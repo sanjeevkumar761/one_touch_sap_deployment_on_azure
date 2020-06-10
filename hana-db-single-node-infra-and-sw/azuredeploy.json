@@ -6,7 +6,21 @@
             "type": "string",
             "defaultValue": "jumpboxlinux",
             "metadata": {
-              "description": "Name of the VM"
+                "description": "Name of the VM"
+            }
+        },
+        "servicePrincipalAppId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Service Principal App Id"
+            }
+        },
+        "servicePrincipalPassword": {
+            "type": "securestring",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Service Principal Password"
             }
         }
     },
@@ -27,7 +41,7 @@
             "location": "[resourceGroup().location]",
             "identity": {
                 "type": "SystemAssigned"
-                },
+            },
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
