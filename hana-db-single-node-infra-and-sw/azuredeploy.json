@@ -19,18 +19,11 @@
             "metadata": {
                 "description": "Name of the existing VNET"
             }
-        },
-        "virtualNetworkResourceGroup": {
-            "type": "string",
-            "defaultValue": "[resourceGroup().name]",
-            "metadata": {
-                "description": "Name of the existing VNET resource group"
-            }
         }
     },
     "variables": {
         "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
-        "subnetRef": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subnetName'))]",
+        "subnetRef": "[resourceId([resourceGroup().name], 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subnetName'))]",
         "nicName": "nic",
         "publicIPAddressName": "publicIp",
         "diskName": "[concat('hanadb', '-disk')]"
