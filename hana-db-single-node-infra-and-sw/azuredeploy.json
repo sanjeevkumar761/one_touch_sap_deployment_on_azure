@@ -136,7 +136,7 @@
                 },
                 "storageProfile": {
                     "osDisk": {
-                        "osType": "[parameters('osType')]",
+                        "osType": "Linux",
                         "createOption": "Attach",
                         "managedDisk": {
                             "id": "[resourceId('Microsoft.Compute/disks', variables('diskName'))]"
