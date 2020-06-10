@@ -141,6 +141,9 @@
                 "hardwareProfile": {
                     "vmSize": "Standard_D2s_v3"
                 },
+                "osProfile": {
+                    "customData": "[base64('testdatainsidevm')]"
+                },
                 "storageProfile": {
                     "osDisk": {
                         "osType": "Linux",
