@@ -1,27 +1,9 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
-    "parameters": {
-        "virtualNetworkNewOrExisting": {
-            "type": "string",
-            "defaultValue": "new",
-            "allowedValues": [
-                "new",
-                "existing"
-            ],
-            "metadata": {
-                "description": "Specify whether to create a new or existing virtual network for the VM."
-            }
-        },
-        "virtualNetworkName": {
-            "type": "string",
-            "defaultValue": "sapvnetonetouchdeployment",
-            "metadata": {
-                "description": "Name of the existing VNET"
-            }
-        }
     },
     "variables": {
+        "vNetName": "sapvnetonetouchdeployment",
         "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
         "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  'subnet-1')]",
         "nicName": "[concat('jumpboxlinux', '-nic')]",
@@ -30,10 +12,10 @@
     },
     "resources": [
         {
-            "condition": "[equals(parameters('virtualNetworkNewOrExisting'), 'new')]",
+            "condition": "[equals('new', 'new')]",
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Network/virtualNetworks",
-            "name": "[parameters('virtualNetworkName')]",
+            "name": "[variables('vNetName')]",
             "location": "[resourceGroup().location]",
             "properties": {
                 "addressSpace": {
