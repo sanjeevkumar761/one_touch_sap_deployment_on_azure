@@ -25,6 +25,9 @@
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[variables('vNetName')]",
             "location": "[resourceGroup().location]",
+            "identity": {
+                "type": "SystemAssigned"
+                },
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
