@@ -2,14 +2,21 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "vmName": {
+            "type": "string",
+            "defaultValue": "jumpboxlinux",
+            "metadata": {
+              "description": "Name of the VM"
+            }
+        }
     },
     "variables": {
         "vNetName": "sapvnetonetouchdeployment",
         "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
         "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  'subnet-1')]",
-        "nicName": "[concat('jumpboxlinux', '-nic')]",
-        "publicIPAddressName": "[concat('jumpboxlinux', '-publicIp')]",
-        "diskName": "[concat('jumpboxlinux', '-disk')]"
+        "nicName": "[concat(parameters('vmName'), '-nic')]",
+        "publicIPAddressName": "[concat(parameters('vmName'), '-publicIp')]",
+        "diskName": "[concat(parameters('vmName'), '-disk')]"
     },
     "resources": [
         {
@@ -104,7 +111,7 @@
         {
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "jumpboxlinux",
+            "name": "[parameters('vmName')]",
             "location": "[resourceGroup().location]",
             "tags": {
                 "displayName": "VirtualMachine"
