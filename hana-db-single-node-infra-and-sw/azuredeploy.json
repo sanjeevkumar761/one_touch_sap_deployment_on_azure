@@ -26,7 +26,7 @@
         "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  'subnet-1')]",
         "nicName": "nic",
         "publicIPAddressName": "publicIp",
-        "diskName": "[concat('hanadb', '-disk')]"
+        "diskName": "[concat('jumpboxlinux', '-disk')]"
     },
     "resources": [
         {
@@ -121,7 +121,7 @@
         {
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "hanadb",
+            "name": "jumpboxlinux",
             "location": "[resourceGroup().location]",
             "tags": {
                 "displayName": "VirtualMachine"
