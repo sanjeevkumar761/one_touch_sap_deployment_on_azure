@@ -15,7 +15,7 @@
         },
         "virtualNetworkName": {
             "type": "string",
-            "defaultValue": "newVnet",
+            "defaultValue": "sapvnetonetouchdeployment",
             "metadata": {
                 "description": "Name of the existing VNET"
             }
@@ -24,8 +24,8 @@
     "variables": {
         "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
         "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  'subnet-1')]",
-        "nicName": "nic",
-        "publicIPAddressName": "publicIp",
+        "nicName": "[concat('jumpboxlinux', '-nic')]",
+        "publicIPAddressName": "[concat('jumpboxlinux', '-publicIp')]",
         "diskName": "[concat('jumpboxlinux', '-disk')]"
     },
     "resources": [
