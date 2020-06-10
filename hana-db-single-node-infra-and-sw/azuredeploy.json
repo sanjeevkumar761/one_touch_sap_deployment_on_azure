@@ -23,7 +23,7 @@
     },
     "variables": {
         "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
-        "subnetRef": "[resourceId([resourceGroup().name], 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subnetName'))]",
+        "subnetRef": "concat((resourceGroup().name), ''), 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subnetName'))]",
         "nicName": "nic",
         "publicIPAddressName": "publicIp",
         "diskName": "[concat('hanadb', '-disk')]"
