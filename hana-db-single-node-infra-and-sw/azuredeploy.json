@@ -165,7 +165,7 @@
                     "fileUris": [
                         "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/hana-db-single-node-infra-and-sw/scripts/hello.sh"
                     ],
-                    "commandToExecute": "[parameters('commandToExecute')]"
+                    "commandToExecute": "sudo sh hello.sh
                 }
             }
         }
