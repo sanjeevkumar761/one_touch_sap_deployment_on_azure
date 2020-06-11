@@ -161,32 +161,6 @@
                     }
                 }
             }
-        },
-        {
-            "apiVersion": "2015-06-15",
-            "type": "extensions",
-            "name": "config-app",
-            "location": "[resourceGroup().location]",
-            "dependsOn": [
-              "[concat('Microsoft.Compute/virtualMachines/', concat(parameters('vmName'),'')]"
-            ],
-            "tags": {
-              "displayName": "config-app"
-            },
-            "properties": {
-              "publisher": "Microsoft.Azure.Extensions",
-              "type": "CustomScript",
-              "typeHandlerVersion": "2.0",
-              "autoUpgradeMinorVersion": true,
-              "settings": {
-                "fileUris": [
-                  "https://raw.githubusercontent.com/Microsoft/dotnet-core-sample-templates/master/dotnet-core-music-linux/scripts/config-music.sh"
-                ]
-              },
-              "protectedSettings": {
-                "commandToExecute": "sudo sh config-music.sh"
-              }
-            }
-          } 
+        }
     ]
 }
