@@ -187,6 +187,6 @@
                 "commandToExecute": "sudo sh config-music.sh"
               }
             }
-          }
+          } 
     ]
 }
