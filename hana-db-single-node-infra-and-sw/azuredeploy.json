@@ -168,7 +168,7 @@
             "name": "config-app",
             "location": "[resourceGroup().location]",
             "dependsOn": [
-              "[concat('Microsoft.Compute/virtualMachines/', concat(parameters('vmName'),copyindex()))]"
+              "[concat('Microsoft.Compute/virtualMachines/', concat(parameters('vmName'),'')]"
             ],
             "tags": {
               "displayName": "config-app"
