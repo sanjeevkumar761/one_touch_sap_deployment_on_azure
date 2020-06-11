@@ -8,20 +8,6 @@
             "metadata": {
                 "description": "Name of the VM"
             }
-        },
-        "servicePrincipalAppId": {
-            "type": "string",
-            "defaultValue": "",
-            "metadata": {
-                "description": "Service Principal App Id"
-            }
-        },
-        "servicePrincipalPassword": {
-            "type": "securestring",
-            "defaultValue": "",
-            "metadata": {
-                "description": "Service Principal Password"
-            }
         }
     },
     "variables": {
