@@ -6,14 +6,14 @@
             "type": "string",
             "defaultValue": "jumpboxlinux",
             "metadata": {
-              "description": "Name of the VM"
+                "description": "Name of the VM"
             }
         }
     }, 
     "variables": {
         "vNetName": "sapvnetonetouchdeployment",
         "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
-        "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  'subnet-1')]",
+        "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', 'sapvnetonetouchdeployment',  'subnet-1')]",
         "nicName": "[concat(parameters('vmName'), '-nic')]",
         "publicIPAddressName": "[concat(parameters('vmName'), '-publicIp')]",
         "diskName": "[concat(parameters('vmName'), '-disk')]"
