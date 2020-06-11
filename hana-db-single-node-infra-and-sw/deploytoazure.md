@@ -1,6 +1,6 @@
 Deploy HANA DB Single Node to Azure 
 
-**Getting ready:** Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later
+**Getting ready:** Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.
 
 **Click the button below:**
 
