@@ -1,2 +1,2 @@
-cd /home/sanjeevkumar761
-touch unitest.txt
+cat <<< "${args[0]}" > blah.txt
+ 
