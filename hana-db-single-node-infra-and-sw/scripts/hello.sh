@@ -1,2 +1,3 @@
 cd /home/sanjeevkumar761
-echo "${args[0]}" >> blah.txt
+AZURE_SUBSCRIPTION_ID=$1
+echo "AZURE_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID}" >> blah.txt
