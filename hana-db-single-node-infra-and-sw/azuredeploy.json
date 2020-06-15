@@ -33,7 +33,7 @@
         "diskName": "[concat(parameters('vmName'), '-disk')]",
         "subscriptionId": "[subscription().subscriptionId]",
         "tenantId": "[subscription().tenantId]",
-        "clientId": "[(parameters('servicePrincipalAppId')]",
+        "clientId": "[parameters('servicePrincipalAppId')]",
         "clientSecret": "[parameters('servicePrincipalPassword')]",
         "arguments": {
             "AZURE_SUBSCRIPTION_ID": "[variables('subscriptionId')]",
