@@ -8,6 +8,20 @@
             "metadata": {
                 "description": "Name of the VM"
             }
+        },
+        "servicePrincipalAppId": {
+            "type": "string",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Service Principal App Id"
+            }
+        },
+        "servicePrincipalPassword": {
+            "type": "securestring",
+            "defaultValue": "",
+            "metadata": {
+                "description": "Service Principal Password"
+            }
         }
     }, 
     "variables": {
@@ -16,7 +30,17 @@
         "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', 'sapvnetonetouchdeployment',  'subnet-1')]",
         "nicName": "[concat(parameters('vmName'), '-nic')]",
         "publicIPAddressName": "[concat(parameters('vmName'), '-publicIp')]",
-        "diskName": "[concat(parameters('vmName'), '-disk')]"
+        "diskName": "[concat(parameters('vmName'), '-disk')]",
+        "subscriptionId": "[subscription().subscriptionId]",
+        "tenantId": "[subscription().tenantId]",
+        "clientId": "[(parameters('servicePrincipalAppId')]",
+        "clientSecret": "[parameters('servicePrincipalPassword')]",
+        "arguments": {
+            "AZURE_SUBSCRIPTION_ID": "[variables('subscriptionId')]",
+            "AZURE_CLIENT_ID": "[variables('clientId')]",
+            "AZURE_SECRET": "[variables('clientSecret')]",
+            "AZURE_TENANT": "[variables('tenantId')]"
+        }
     },
     "resources": [
         {
@@ -165,7 +189,7 @@
                     "fileUris": [
                         "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/hana-db-single-node-infra-and-sw/scripts/hello.sh"
                     ],
-                    "commandToExecute": "sudo sh hello.sh"
+                    "commandToExecute": "[concat('hello.sh ', string(variables('arguments'))]" 
                 }
             }
         }
