@@ -12,4 +12,4 @@ $(cat ./azurecreds.sh)
 cd souvenir/scenarios/hana-single-node-full
 git pull
 sudo su - sanjeevkumar761
-terraform apply -var net_rg_name=$5 -var az_resource_group=$5
+terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -auto-approve
