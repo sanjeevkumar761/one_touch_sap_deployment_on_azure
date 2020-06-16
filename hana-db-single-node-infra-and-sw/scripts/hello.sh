@@ -13,4 +13,5 @@ cd souvenir/scenarios/hana-single-node-full
 git pull
 rm terraform.tfvars
 cp ./dev/terraform/terraform.tfvars .
-terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -auto-approve
+terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -auto-approve &
+ls
