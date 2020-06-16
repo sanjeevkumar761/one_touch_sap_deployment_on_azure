@@ -11,4 +11,4 @@ echo "export AZURE_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID}\nexport AZURE_CLIENT
 $(cat ./azurecreds.sh)
 cd souvenir/scenarios/hana-single-node-full
 sudo su - sanjeevkumar761
-terraform plan > plan.txt
+terraform apply -var net_rg_name=$5 -var az_resource_group=$5

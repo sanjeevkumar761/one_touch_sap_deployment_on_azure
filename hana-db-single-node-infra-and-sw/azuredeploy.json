@@ -35,6 +35,7 @@
         "tenantId": "[subscription().tenantId]",
         "clientId": "[parameters('servicePrincipalAppId')]",
         "clientSecret": "[parameters('servicePrincipalPassword')]",
+        "rg": "[resourceGroup().id]",
         "arguments": {
             "AZURE_SUBSCRIPTION_ID": "[variables('subscriptionId')]",
             "AZURE_CLIENT_ID": "[variables('clientId')]",
@@ -127,7 +128,7 @@
             "properties": {
                 "creationData": {
                     "createOption": "Import",
-                    "sourceUri": "https://delautomatedhanadiag.blob.core.windows.net/manageddisk/osdiskdelinitj2"
+                    "sourceUri": "https://delautomatedhanadiag.blob.core.windows.net/manageddisk/osdiskdelinitj3"
                 },
                 "osType": "Linux"
             }
@@ -189,7 +190,7 @@
                     "fileUris": [
                         "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/hana-db-single-node-infra-and-sw/scripts/hello.sh"
                     ],
-                    "commandToExecute": "[concat('sudo sh hello.sh ', variables('subscriptionId') , ' ' , variables('clientId') ,  ' ' , variables('clientSecret') ,  ' ' , variables('tenantId'))]" 
+                    "commandToExecute": "[concat('sudo sh hello.sh ', variables('subscriptionId') , ' ' , variables('clientId') ,  ' ' , variables('clientSecret') ,  ' ' , variables('tenantId') ,  ' ' , variables('rg'))]" 
                 }
             }
         }
