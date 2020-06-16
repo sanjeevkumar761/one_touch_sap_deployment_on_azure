@@ -15,3 +15,5 @@ rm terraform.tfvars
 cp ./dev/terraform/terraform.tfvars .
 terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -auto-approve &
 ls
+ansible-playbook hana-single-node-full.yml --extra-vars 10.0.0.6 &
+ls
