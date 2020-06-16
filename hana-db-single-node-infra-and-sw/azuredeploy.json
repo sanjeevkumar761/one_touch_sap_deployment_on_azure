@@ -35,7 +35,7 @@
         "tenantId": "[subscription().tenantId]",
         "clientId": "[parameters('servicePrincipalAppId')]",
         "clientSecret": "[parameters('servicePrincipalPassword')]",
-        "rg": "[resourceGroup().id]",
+        "rg": "[resourceGroup().name]",
         "arguments": {
             "AZURE_SUBSCRIPTION_ID": "[variables('subscriptionId')]",
             "AZURE_CLIENT_ID": "[variables('clientId')]",
