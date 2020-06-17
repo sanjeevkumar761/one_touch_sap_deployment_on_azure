@@ -8,5 +8,5 @@ Deploy HANA DB Single Node to Azure
 
 **How to check installation progress :** 
 1. You can login to jumpbox VM as soon as it is ready ( user: juser, password: Welcome@123 )
-2. You can check installation logs on http://<public IP of jumpbox VM>:9001
+2. You can check installation logs on http:// public IP of your jumpbox VM:9001
 
