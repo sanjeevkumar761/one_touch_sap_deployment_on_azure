@@ -14,5 +14,6 @@ frontail /home/juser/terraform.log /home/juser/ansible.log -d
 git pull
 rm -f terraform.tfvars
 cp ./dev/terraform/terraform.tfvars .
+sudo su
 terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -auto-approve
 ls
