@@ -15,6 +15,4 @@ git pull
 rm terraform.tfvars
 cp ./dev/terraform/terraform.tfvars .
 terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -auto-approve
-cd ./dev/ansible
-ansible-playbook hana-single-node-full.yml --extra-vars "variable_host=10.0.0.6"
 ls
