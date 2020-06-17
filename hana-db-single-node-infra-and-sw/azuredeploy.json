@@ -128,7 +128,7 @@
             "properties": {
                 "creationData": {
                     "createOption": "Import",
-                    "sourceUri": "https://delautomatedhanadiag.blob.core.windows.net/manageddisk/osdiskdelinitj4"
+                    "sourceUri": "https://delautomatedhanadiag.blob.core.windows.net/manageddisk/osdiskdelinitj5"
                 },
                 "osType": "Linux"
             }
