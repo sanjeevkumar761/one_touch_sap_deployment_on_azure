@@ -25,7 +25,7 @@
         }
     }, 
     "variables": {
-        "location": "easus",
+        "location": "eastus",
         "userenteredlocation": "[resourceGroup().location]",
         "vNetName": "sapvnetonetouchdeployment",
         "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
