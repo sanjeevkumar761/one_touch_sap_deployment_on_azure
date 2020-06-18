@@ -131,8 +131,7 @@
                 "displayName": "VirtualMachine"
             },
             "dependsOn": [
-                "[variables('nicName')]",
-                "[variables('diskName')]"
+                "[variables('nicName')]"
             ],
             "properties": {
                 "hardwareProfile": {
