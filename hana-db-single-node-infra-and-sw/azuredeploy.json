@@ -137,6 +137,11 @@
                 "hardwareProfile": {
                     "vmSize": "Standard_D2s_v3"
                 },
+                "osProfile": {
+                    "computerName": "[parameters('vmName')]",
+                    "adminUsername": "juser",
+                    "adminPassword": "Welcome@123"
+                },
                 "storageProfile": {
                     "imageReference": {
                         "publisher": "Canonical",
