@@ -1,20 +1,21 @@
 cd /home/juser
+sudo su
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
-sudo apt-get update
-sudo apt-get upgrade -y
-sudo apt-add-repository ppa:ansible/ansible
-sudo apt-get update
-sudo apt-get install ansible -y
-sudo apt install python-pip -y
+apt-get update
+apt-get upgrade -y
+apt-add-repository ppa:ansible/ansible
+apt-get update
+apt-get install ansible -y
+apt install python-pip -y
 pip install azure
 pip install msrestazure
 pip install msrest
 pip install azure-storage
-sudo apt-get install unzip -y
+apt-get install unzip -y
 wget https://releases.hashicorp.com/terraform/0.12.7/terraform_0.12.7_linux_amd64.zip
-sudo apt install unzip
+apt install unzip
 unzip terraform_0.12.7_linux_amd64.zip
-sudo mv terraform /usr/local/bin/
+mv terraform /usr/local/bin/
 AZURE_SUBSCRIPTION_ID=$1
 AZURE_CLIENT_ID=$2
 AZURE_SECRET=$3
@@ -30,6 +31,5 @@ frontail /home/juser/terraform.log /home/juser/ansible.log -d
 git pull
 rm -f terraform.tfvars
 cp ./dev/terraform/terraform.tfvars .
-sudo su
 terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -auto-approve
 ls
