@@ -1,5 +1,6 @@
 cd /home/juser
 sudo su
+cat /dev/zero | ssh-keygen -q -N "" > /dev/null
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 apt-get update
 apt-get upgrade -y
