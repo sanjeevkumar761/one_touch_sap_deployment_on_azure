@@ -23,7 +23,7 @@
                 "description": "Service Principal Password"
             }
         }
-    }, 
+    },
     "variables": {
         "location": "eastus",
         "userenteredlocation": "[resourceGroup().location]",
@@ -152,12 +152,102 @@
                     "vmSize": "Standard_D2s_v3"
                 },
                 "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
                     "osDisk": {
-                        "osType": "Linux",
-                        "createOption": "Attach",
-                        "managedDisk": {
-                            "id": "[resourceId('Microsoft.Compute/disks', variables('diskName'))]"
-                        }
+                        "createOption": "fromImage"
+                    }
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "createOption": "fromImage"
+                    }
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "createOption": "fromImage"
+                    }
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "createOption": "fromImage"
+                    }
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "createOption": "fromImage"
+                    }
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "createOption": "fromImage"
+                    }
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "createOption": "fromImage"
+                    }
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "createOption": "fromImage"
+                    }
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "Canonical",
+                        "offer": "UbuntuServer",
+                        "sku": "18.04-LTS",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "createOption": "fromImage"
                     }
                 },
                 "networkProfile": {
@@ -192,7 +282,7 @@
                     "fileUris": [
                         "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/hana-db-single-node-infra-and-sw/scripts/hello.sh"
                     ],
-                    "commandToExecute": "[concat('sudo sh hello.sh ', variables('subscriptionId') , ' ' , variables('clientId') ,  ' ' , variables('clientSecret') ,  ' ' , variables('tenantId') ,  ' ' , variables('rg') ,  ' &' )]" 
+                    "commandToExecute": "[concat('sudo sh hello.sh ', variables('subscriptionId') , ' ' , variables('clientId') ,  ' ' , variables('clientSecret') ,  ' ' , variables('tenantId') ,  ' ' , variables('rg') ,  ' &' )]"
                 }
             }
         }
