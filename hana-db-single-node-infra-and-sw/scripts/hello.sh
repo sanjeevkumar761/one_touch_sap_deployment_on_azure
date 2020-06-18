@@ -1,4 +1,4 @@
-cd /home/sanjeevkumar761
+cd /home/user
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 sudo apt-get update
 sudo apt-get upgrade -y
