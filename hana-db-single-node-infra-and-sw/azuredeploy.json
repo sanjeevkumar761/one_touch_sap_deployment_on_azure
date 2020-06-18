@@ -25,6 +25,8 @@
         }
     }, 
     "variables": {
+        "location": "easus",
+        "userenteredlocation": "[resourceGroup().location]",
         "vNetName": "sapvnetonetouchdeployment",
         "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
         "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', 'sapvnetonetouchdeployment',  'default')]",
@@ -49,7 +51,7 @@
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[variables('vNetName')]",
-            "location": "[resourceGroup().location]",
+            "location": "[variables('location')]",
             "properties": {
                 "addressSpace": {
                     "addressPrefixes": [
@@ -70,7 +72,7 @@
             "type": "Microsoft.Storage/storageAccounts",
             "name": "[variables('diagStorageAccountName')]",
             "apiVersion": "2018-07-01",
-            "location": "[resourceGroup().location]",
+            "location": "[variables('location')]",
             "sku": {
                 "name": "Standard_LRS"
             },
@@ -81,7 +83,7 @@
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('publicIPAddressName')]",
-            "location": "[resourceGroup().location]",
+            "location": "[variables('location')]",
             "tags": {
                 "displayName": "PublicIPAddress"
             },
@@ -96,7 +98,7 @@
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
-            "location": "[resourceGroup().location]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "[variables('publicIPAddressName')]"
             ],
@@ -124,7 +126,7 @@
             "type": "Microsoft.Compute/disks",
             "apiVersion": "2018-09-30",
             "name": "[variables('diskName')]",
-            "location": "[resourceGroup().location]",
+            "location": "[variables('location')]",
             "properties": {
                 "creationData": {
                     "createOption": "Import",
@@ -137,7 +139,7 @@
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('vmName')]",
-            "location": "[resourceGroup().location]",
+            "location": "[variables('location')]",
             "tags": {
                 "displayName": "VirtualMachine"
             },
@@ -177,7 +179,7 @@
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "name": "[concat(parameters('vmName'),'/installcustomscript')]",
             "apiVersion": "2015-05-01-preview",
-            "location": "[resourceGroup().location]",
+            "location": "[variables('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Compute/virtualMachines/', parameters('vmName'))]"
             ],
