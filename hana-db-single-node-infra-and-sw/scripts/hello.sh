@@ -31,5 +31,6 @@ cd souvenir/scenarios/hana-single-node-full
 frontail /home/juser/terraform.log /home/juser/ansible.log -d
 rm -f terraform.tfvars
 cp ./dev/terraform/terraform.tfvars .
+terraform init
 terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -auto-approve
 ls
