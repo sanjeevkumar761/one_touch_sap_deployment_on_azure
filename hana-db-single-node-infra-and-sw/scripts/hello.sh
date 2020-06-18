@@ -1,4 +1,20 @@
 cd /home/sanjeevkumar761
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
+sudo apt-get update
+sudo apt-get upgrade -y
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible -y
+sudo apt install python-pip -y
+pip install azure
+pip install msrestazure
+pip install msrest
+pip install azure-storage
+sudo apt-get install unzip -y
+wget https://releases.hashicorp.com/terraform/0.12.7/terraform_0.12.7_linux_amd64.zip
+sudo apt install unzip
+unzip terraform_0.12.7_linux_amd64.zip
+sudo mv terraform /usr/local/bin/
 AZURE_SUBSCRIPTION_ID=$1
 AZURE_CLIENT_ID=$2
 AZURE_SECRET=$3
