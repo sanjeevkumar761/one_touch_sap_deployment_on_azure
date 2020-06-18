@@ -123,19 +123,6 @@
             }
         },
         {
-            "type": "Microsoft.Compute/disks",
-            "apiVersion": "2018-09-30",
-            "name": "[variables('diskName')]",
-            "location": "[variables('location')]",
-            "properties": {
-                "creationData": {
-                    "createOption": "Import",
-                    "sourceUri": "https://delautomatedhanadiag.blob.core.windows.net/manageddisk/osdiskdelinitj5?sp=r&st=2020-06-18T17:34:42Z&se=2021-06-19T01:34:42Z&spr=https&sv=2019-10-10&sr=b&sig=6H3RaDQPhkjCZWS%2FHxBzERxaQe4waN3EOveCi%2BEvM1M%3D"
-                },
-                "osType": "Linux"
-            }
-        },
-        {
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[parameters('vmName')]",
