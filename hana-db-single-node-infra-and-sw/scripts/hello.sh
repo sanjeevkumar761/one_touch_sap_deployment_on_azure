@@ -11,6 +11,8 @@ pip install azure
 pip install msrestazure
 pip install msrest
 pip install azure-storage
+echo 'test log' >> /home/juser/terraform.log
+echo 'test log' >> /home/juser/ansible.log
 apt-get install npm -y && npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log &
 npm i frontail -g && frontail -d /home/juser/terraform.log /home/juser/ansible.log
 echo '[hanadb]' >> /etc/ansible/hosts
