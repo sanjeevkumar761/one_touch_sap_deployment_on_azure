@@ -26,6 +26,7 @@ sudo rm /var/lib/apt/lists/lock
 sudo rm /var/cache/apt/archives/lock
 sudo rm /var/lib/dpkg/lock*
 apt-get install npm -y && npm i frontail -g && npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log & 
+sleep 1m
 frontail -d /home/juser/terraform.log /home/juser/ansible.log
 AZURE_SUBSCRIPTION_ID=$1
 AZURE_CLIENT_ID=$2
