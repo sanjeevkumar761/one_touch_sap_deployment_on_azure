@@ -13,8 +13,6 @@ pip install msrest
 pip install azure-storage
 echo 'test log' >> /home/juser/terraform.log
 echo 'test log' >> /home/juser/ansible.log
-apt-get install npm -y && npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log &
-npm i frontail -g && frontail -d /home/juser/terraform.log /home/juser/ansible.log
 echo '[hanadb]' >> /etc/ansible/hosts
 echo '10.0.0.6 ansible_user=demo' >> /etc/ansible/hosts
 ssh-keyscan -H 10.0.0.6 >> ~/.ssh/known_hosts
@@ -24,6 +22,7 @@ wget https://releases.hashicorp.com/terraform/0.12.7/terraform_0.12.7_linux_amd6
 apt install unzip
 unzip terraform_0.12.7_linux_amd64.zip
 mv terraform /usr/local/bin/
+apt-get install npm -y && npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log & && npm i frontail -g && frontail -d /home/juser/terraform.log /home/juser/ansible.log
 AZURE_SUBSCRIPTION_ID=$1
 AZURE_CLIENT_ID=$2
 AZURE_SECRET=$3
