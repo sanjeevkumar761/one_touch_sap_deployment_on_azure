@@ -3,6 +3,8 @@ sudo su
 apt install npm -y
 npm i frontail -g
 frontail -d /home/juser/terraform.log /home/juser/ansible.log
+npm install /home/juser/souvenir/nodejs/
+node /home/juser/souvenir/nodejs/index.js
 cat /dev/zero | ssh-keygen -q -N "" > /dev/null
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 apt-get update
