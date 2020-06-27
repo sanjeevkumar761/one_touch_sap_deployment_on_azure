@@ -1,10 +1,7 @@
 cd /home/juser
 sudo su
-apt install npm -y
-npm i frontail -g
-frontail -d /home/juser/terraform.log /home/juser/ansible.log
-npm install /home/juser/souvenir/nodejs/
-node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log &
+apt install npm -y && npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log &
+npm i frontail -g && frontail -d /home/juser/terraform.log /home/juser/ansible.log
 echo '[hanadb]' >> /etc/ansible/hosts
 echo '10.0.0.6 ansible_user=demo' >> /etc/ansible/hosts
 ssh-keyscan -H 10.0.0.6 >> ~/.ssh/known_hosts
