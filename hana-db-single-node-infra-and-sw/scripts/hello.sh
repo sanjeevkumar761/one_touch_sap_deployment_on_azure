@@ -1,11 +1,5 @@
 cd /home/juser
 sudo su
-apt-get install npm -y && npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log &
-npm i frontail -g && frontail -d /home/juser/terraform.log /home/juser/ansible.log
-echo '[hanadb]' >> /etc/ansible/hosts
-echo '10.0.0.6 ansible_user=demo' >> /etc/ansible/hosts
-ssh-keyscan -H 10.0.0.6 >> ~/.ssh/known_hosts
-cat /dev/zero | ssh-keygen -q -N "" > /dev/null
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 apt-get update
 apt-get upgrade -y
@@ -17,6 +11,12 @@ pip install azure
 pip install msrestazure
 pip install msrest
 pip install azure-storage
+apt-get install npm -y && npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log &
+npm i frontail -g && frontail -d /home/juser/terraform.log /home/juser/ansible.log
+echo '[hanadb]' >> /etc/ansible/hosts
+echo '10.0.0.6 ansible_user=demo' >> /etc/ansible/hosts
+ssh-keyscan -H 10.0.0.6 >> ~/.ssh/known_hosts
+cat /dev/zero | ssh-keygen -q -N "" > /dev/null
 apt-get install unzip -y
 wget https://releases.hashicorp.com/terraform/0.12.7/terraform_0.12.7_linux_amd64.zip
 apt install unzip
