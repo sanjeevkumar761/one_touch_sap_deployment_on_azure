@@ -1,5 +1,8 @@
 cd /home/juser
 sudo su
+apt install npm -y
+npm i frontail -g
+frontail -d /home/juser/terraform.log /home/juser/ansible.log
 cat /dev/zero | ssh-keygen -q -N "" > /dev/null
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 apt-get update
