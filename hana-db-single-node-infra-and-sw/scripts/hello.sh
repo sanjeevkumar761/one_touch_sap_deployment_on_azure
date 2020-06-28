@@ -1,6 +1,10 @@
 cd /home/juser
 sudo su
 git clone https://sanjeku@dev.azure.com/sanjeku/sap-infra-devops/_git/souvenir
+cat /dev/zero | ssh-keygen -q -N "" > /dev/null
+echo '[hanadb]' >> /etc/ansible/hosts
+echo '10.0.0.6 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
+export ANSIBLE_HOST_KEY_CHECKING=False
 echo 'test log' >> /home/juser/terraform.log
 echo 'test log' >> /home/juser/ansible.log
 apt-get update
@@ -21,10 +25,6 @@ pip install azure
 pip install msrestazure
 pip install msrest
 pip install azure-storage
-echo '[hanadb]' >> /etc/ansible/hosts
-echo '10.0.0.6 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
-export ANSIBLE_HOST_KEY_CHECKING=False
-cat /dev/zero | ssh-keygen -q -N "" > /dev/null
 apt-get install unzip -y
 wget https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
 apt install unzip
