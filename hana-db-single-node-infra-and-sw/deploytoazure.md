@@ -1,4 +1,5 @@
-Deploy HANA DB Single Node to Azure (creates infrastructure on Microsoft Azure and installs SAP HANA DB software). It takes about 45-60 minutes for full deployment process to complete. Please follow the steps mentioned below:    
+Deploy HANA DB Single Node to Azure (creates infrastructure on Microsoft Azure and installs SAP HANA DB software).   
+It takes about 45-60 minutes for full deployment process to complete. Please follow the steps mentioned below:    
 
 **Step 1. Getting ready:**   
 Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.
