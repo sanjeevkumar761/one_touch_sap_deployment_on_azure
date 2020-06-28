@@ -18,7 +18,7 @@ Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp 
 4\) Now, you can check installation progress on URL http://\<public IP of your jumpboxlinux VM\>:3000  \(you need to refresh the page manually to check progress until the Deployment progress reaches 100% which takes about 40-50 minutes)  
 5\) You can check detailed installation logs on URL http://\<public IP of your jumpboxlinux VM\>:9001  
 
-## Confirm HANA DB is up and running:      
+## Connect to HANA DB and confirm it is up and running:      
 1\) SSH into jumpboxlinx VM with its Public IP address using Putty or other SSH tool ( user: juser, password: Welcome@123 )   
 2\) Switch to root by using command "sudo su"  
 3\) SSH into HANA DB VM using command "ssh demo@hanadb" (accept key fingerprint of HANA DB VM when it prompts, by typing yes)  
