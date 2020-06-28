@@ -1,4 +1,4 @@
-Deploy HANA DB Single Node to Azure:  
+Deploy HANA DB Single Node to Azure (creates infrastructure on Microsoft Azure and installs SAP HANA DB software):  
 
 **Step 1. Getting ready:**   
 Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.
@@ -14,7 +14,14 @@ Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp 
 4\) Now, you can check installation progress on http://\<public IP of your jumpboxlinux VM\>:3000  
 5\) You can check detailed installation logs on http://\<public IP of your jumpboxlinux VM\>:9001  
 
-**Advanced - How to login to jumpbox VM :**   
+**Step 4. Confirm HANA DB is up and running:**   
+1\) SSH into jumpboxlinx VM with its Public IP address using Putty or other SSH tool ( user: juser, password: Welcome@123 ) 
+2\) Switch to root by using command "sudo su"
+3\) SSH into HANA DB VM using command "ssh demo@hanadb" (accept key fingerprint of HANA DB VM when it prompts, by typing yes)
+4\) Inside HANA DB VM, switch to HANA admin user by using command "sudo su - hn1adm"
+5\) Check status of HANA DB processes by using command "sapcontrol -nr 00 -Function GetProcessList". You should be able to notice that status of all HANA DB processes is GREEN.
+
+**Advanced - How to check detailed installation trace:**   
 1\) You can login to jumpbox VM as soon as it is shows Running state in Azure portal ( user: juser, password: Welcome@123 )  
 2\) You can switch to root by using "sudo su" and change directory to waagent using "cd /var/lib/waagent/custom-script/download/0"  
 3\) Now you can check "stdout" and "stderr" files.  
