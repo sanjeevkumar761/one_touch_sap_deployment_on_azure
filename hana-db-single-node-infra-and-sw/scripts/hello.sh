@@ -1,6 +1,16 @@
 cd /home/juser
 sudo su
+git clone https://sanjeku@dev.azure.com/sanjeku/sap-infra-devops/_git/souvenir
+echo 'test log' >> /home/juser/terraform.log
+echo 'test log' >> /home/juser/ansible.log
+apt-get install npm -y && npm i frontail -g 
+sleep 1m
+frontail -d /home/juser/terraform.log /home/juser/ansible.log
+npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log &
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
+sudo rm /var/lib/apt/lists/lock
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock*
 apt-get update
 apt-get upgrade -y
 apt-add-repository ppa:ansible/ansible
@@ -11,8 +21,6 @@ pip install azure
 pip install msrestazure
 pip install msrest
 pip install azure-storage
-echo 'test log' >> /home/juser/terraform.log
-echo 'test log' >> /home/juser/ansible.log
 echo '[hanadb]' >> /etc/ansible/hosts
 echo '10.0.0.6 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
 ssh-keyscan -H 10.0.0.6 >> /root/.ssh/known_hosts
@@ -26,9 +34,6 @@ mv terraform /usr/local/bin/
 sudo rm /var/lib/apt/lists/lock
 sudo rm /var/cache/apt/archives/lock
 sudo rm /var/lib/dpkg/lock*
-apt-get install npm -y && npm i frontail -g 
-sleep 1m
-frontail -d /home/juser/terraform.log /home/juser/ansible.log
 AZURE_SUBSCRIPTION_ID=$1
 AZURE_CLIENT_ID=$2
 AZURE_SECRET=$3
@@ -44,8 +49,6 @@ sudo rm /var/cache/apt/archives/lock
 sudo rm /var/lib/dpkg/lock*
 apt-get install axel
 axel https://softsap.blob.core.windows.net/sapsoft/IMDB_SERVER20_047_0-80002031.SAR
-git clone https://sanjeku@dev.azure.com/sanjeku/sap-infra-devops/_git/souvenir
-npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log &
 cd souvenir/scenarios/hana-single-node-full
 rm -f terraform.tfvars
 cp ./dev/terraform/terraform.tfvars .
