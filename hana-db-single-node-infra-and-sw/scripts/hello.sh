@@ -7,6 +7,7 @@ echo 'test log' >> /home/juser/ansible.log
 apt-get update
 apt-get upgrade -y
 apt-get install npm -y && npm i frontail -g 
+export ANSIBLE_HOST_KEY_CHECKING=False
 sleep 1m
 frontail -d /var/lib/waagent/custom-script/download/0/stdout /home/juser/ansible.log
 npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log &
@@ -24,7 +25,6 @@ pip install msrest
 pip install azure-storage
 echo '[hanadb]' >> /etc/ansible/hosts
 echo '10.0.0.6 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
-export ANSIBLE_HOST_KEY_CHECKING=False
 apt-get install unzip -y
 wget https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
 apt install unzip
