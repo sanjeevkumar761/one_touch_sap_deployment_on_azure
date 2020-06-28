@@ -11,8 +11,8 @@ Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp 
 1) Wait for initial deployment to complete in Azure portal. You'll see the message "Your deployment is complete" in Azure portal  
 2) Go to your Resource Group in Azure portal, locate the VM named "jumpboxlinux" and look for its Public IP address  
 3) Wait for about 10 minutes for installation monitoring layer inside jumpboxlinux VM to be ready  
-4) Now, you can check installation progress on http://public IP of your jumpbox VM:3000  
-5) You can check detailed installation logs on http://public IP of your jumpbox VM:9001  
+4) Now, you can check installation progress on http:// public IP of your jumpbox VM:3000  
+5) You can check detailed installation logs on http:// public IP of your jumpbox VM:9001  
 
 **Advanced - How to login to jumpbox VM :**   
 1) You can login to jumpbox VM as soon as it is ready ( user: juser, password: Welcome@123 )  
