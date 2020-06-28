@@ -15,7 +15,7 @@ echo 'test log' >> /home/juser/terraform.log
 echo 'test log' >> /home/juser/ansible.log
 echo '[hanadb]' >> /etc/ansible/hosts
 echo '10.0.0.6 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
-ssh-keyscan -H 10.0.0.6 >> ~/.ssh/known_hosts
+ssh-keyscan -H 10.0.0.6 >> /root/.ssh/known_hosts
 cat /dev/zero | ssh-keygen -q -N "" > /dev/null
 apt-get install unzip -y
 wget https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
