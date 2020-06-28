@@ -24,12 +24,18 @@ Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp 
 3\) SSH into HANA DB VM using command "ssh demo@hanadb" (accept key fingerprint of HANA DB VM when it prompts, by typing yes)  
 4\) Inside HANA DB VM, switch to HANA admin user by using command "sudo su - hn1adm"  
 5\) Check status of HANA DB processes by using command "sapcontrol -nr 00 -Function GetProcessList". You should be able to notice that status of all HANA DB processes is GREEN.  
+**How to snooze (stop/start) HANA DB VM and jumpbox VM:**    
+1\) Inside HANA DB VM, stop HANA processees by using command "sapcontrol -nr 00 -Function Stop"  
+2\) Stop HANA DB from Azure portal  
+3\) Stop jumpboxlinux VM from Azure portal  
+4\) To start next time, start jumpboxlinux VM from Azure portal  
+5\) SSH into jumpboxlinux and then SSH into HANA DB VM  
+6\) Switch to HANA admin user by using command "sudo su - hn1adm" and run command "sapcontrol -nr 00 -Function Start" .  
 
 **Advanced - How to check detailed installation trace:**   
 1\) You can login to jumpbox VM as soon as it is shows Running state in Azure portal ( user: juser, password: Welcome@123 )  
 2\) You can switch to root by using "sudo su" and change directory to waagent using "cd /var/lib/waagent/custom-script/download/0"  
 3\) Now you can check "stdout" and "stderr" files.  
-
 
 
 
