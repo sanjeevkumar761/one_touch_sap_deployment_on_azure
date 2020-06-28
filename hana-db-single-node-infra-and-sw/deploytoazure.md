@@ -1,4 +1,4 @@
-**Deploy HANA DB Single Node to Azure**  
+# Deploy HANA DB Single Node to Azure
 *You agree to the dislaimer mentioned at the bottom of this page, when you proceed further with the details and steps given below.*
 
 This creates infrastructure on Microsoft Azure and installs SAP HANA DB software.     
