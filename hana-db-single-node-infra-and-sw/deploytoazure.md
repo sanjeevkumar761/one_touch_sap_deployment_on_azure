@@ -1,4 +1,6 @@
 **Deploy HANA DB Single Node to Azure**  
+*You agree to the dislaimer mentioned at the bottom of this page, when you proceed further with the details and steps given below.*
+
 This creates infrastructure on Microsoft Azure and installs SAP HANA DB software.     
 It takes about 45-60 minutes for full deployment process to complete. Please follow the steps mentioned below:    
 
@@ -27,3 +29,8 @@ Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp 
 1\) You can login to jumpbox VM as soon as it is shows Running state in Azure portal ( user: juser, password: Welcome@123 )  
 2\) You can switch to root by using "sudo su" and change directory to waagent using "cd /var/lib/waagent/custom-script/download/0"  
 3\) Now you can check "stdout" and "stderr" files.  
+
+**IMPORTANT DISCLAIMER**  
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.  
+
+This source code is just an example and it does not represent any software or product or service from my employer Microsoft. It is not an official Microsoft artifact or product and it is not endorsed in any way by Microsoft. You should exercise your own judgement and prudence before using it. There is no one who is actively maintaining or supporting this project.  
