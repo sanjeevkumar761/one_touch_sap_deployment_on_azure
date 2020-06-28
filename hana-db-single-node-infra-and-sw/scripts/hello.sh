@@ -3,6 +3,8 @@ sudo su
 git clone https://sanjeku@dev.azure.com/sanjeku/sap-infra-devops/_git/souvenir
 echo 'test log' >> /home/juser/terraform.log
 echo 'test log' >> /home/juser/ansible.log
+apt-get update
+apt-get upgrade -y
 apt-get install npm -y && npm i frontail -g 
 sleep 1m
 frontail -d /home/juser/terraform.log /home/juser/ansible.log
@@ -11,8 +13,6 @@ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 sudo rm /var/lib/apt/lists/lock
 sudo rm /var/cache/apt/archives/lock
 sudo rm /var/lib/dpkg/lock*
-apt-get update
-apt-get upgrade -y
 apt-add-repository ppa:ansible/ansible
 apt-get update
 apt-get install ansible -y
