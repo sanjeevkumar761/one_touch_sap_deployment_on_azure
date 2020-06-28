@@ -39,6 +39,11 @@ ARM_CLIENT_SECRET=$3
 ARM_TENANT_ID=$4
 echo "export AZURE_SUBSCRIPTION_ID=${AZURE_SUBSCRIPTION_ID}\nexport AZURE_CLIENT_ID=${AZURE_CLIENT_ID}\nexport AZURE_SECRET=${AZURE_SECRET}\nexport AZURE_TENANT=${AZURE_TENANT}\nexport ARM_SUBSCRIPTION_ID=${ARM_SUBSCRIPTION_ID}\nexport ARM_CLIENT_ID=${ARM_CLIENT_ID}\nexport ARM_CLIENT_SECRET=${ARM_CLIENT_SECRET}\nexport ARM_TENANT_ID=${ARM_TENANT_ID}\nexport TF_LOG=TRACE\nexport TF_LOG_PATH=/home/juser/terraform.log" >> azurecreds.sh
 $(cat ./azurecreds.sh)
+sudo rm /var/lib/apt/lists/lock
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock*
+apt-get install axel
+axel https://softsap.blob.core.windows.net/sapsoft/IMDB_SERVER20_047_0-80002031.SAR
 git clone https://sanjeku@dev.azure.com/sanjeku/sap-infra-devops/_git/souvenir
 npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js 2>&1 | tee -a /home/juser/ansible.log &
 cd souvenir/scenarios/hana-single-node-full
