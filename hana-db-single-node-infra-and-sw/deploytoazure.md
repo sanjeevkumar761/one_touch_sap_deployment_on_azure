@@ -24,6 +24,7 @@ Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp 
 3\) SSH into HANA DB VM using command "ssh demo@hanadb" (accept key fingerprint of HANA DB VM when it prompts, by typing yes)  
 4\) Inside HANA DB VM, switch to HANA admin user by using command "sudo su - hn1adm"  
 5\) Check status of HANA DB processes by using command "sapcontrol -nr 00 -Function GetProcessList". You should be able to notice that status of all HANA DB processes is GREEN.  
+\
 
 **Advanced - How to check detailed installation trace:**   
 1\) You can login to jumpbox VM as soon as it is shows Running state in Azure portal ( user: juser, password: Welcome@123 )  
