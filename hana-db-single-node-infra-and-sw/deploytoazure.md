@@ -11,7 +11,7 @@ Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp 
 1\) Wait for initial deployment to complete in Azure portal. You'll see the message "Your deployment is complete" in Azure portal. It deploys a jumpbox on Azure  
 2\) Go to your Resource Group in Azure portal, locate the VM named "jumpboxlinux" and look for its Public IP address  
 3\) *Wait for about 10 minutes* for installation monitoring layer inside jumpboxlinux VM to be ready \(It prepares automatically in background\)   
-4\) Now, you can check installation progress on URL http://\<public IP of your jumpboxlinux VM\>:3000  \(you need to refresh the page manually to check progress until the Deployment progress reaches 100%\ which takes about 40-50 minutes)  
+4\) Now, you can check installation progress on URL http://\<public IP of your jumpboxlinux VM\>:3000  \(you need to refresh the page manually to check progress until the Deployment progress reaches 100% which takes about 40-50 minutes)  
 5\) You can check detailed installation logs on URL http://\<public IP of your jumpboxlinux VM\>:9001  
 
 **Step 4. Confirm HANA DB is up and running:**    
