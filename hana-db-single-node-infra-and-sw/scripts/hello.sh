@@ -54,3 +54,8 @@ cp ./dev/terraform/terraform.tfvars .
 terraform init
 terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -var az_region=$6 -var az_domain_name=$5 -auto-approve
 ls
+az login --service-principal --username $2 --password $3 --tenant $4
+az deployment group create \
+  --resource-group delhanaresourcegroup \
+  --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/hana-db-single-node-infra-and-sw/jumpbox-windows-deploy.json" \
+  --parameters adminUsername='juser' adminPassword='Welcome@123' dnsLabelPrefix='jbwin' windowsOSVersion='2016-Datacenter' vmSize='Standard_D2_v3' location='eastus' vNetName='sapvnetonetouchdeployment' &
