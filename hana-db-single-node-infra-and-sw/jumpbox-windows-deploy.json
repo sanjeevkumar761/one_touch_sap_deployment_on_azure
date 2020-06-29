@@ -168,7 +168,30 @@
           }
         }
       }
-    }
+    },
+	{
+    "apiVersion": "2018-06-01",
+    "type": "Microsoft.Compute/virtualMachines/extensions",
+    "name": "virtualMachineName/config-app",
+    "location": "[resourceGroup().location]",
+    "dependsOn": [
+        "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'),copyindex())]"
+		],
+		"tags": {
+			"displayName": "config-app"
+		},
+		"properties": {
+			"publisher": "Microsoft.Compute",
+			"type": "CustomScriptExtension",
+			"typeHandlerVersion": "1.10",
+			"autoUpgradeMinorVersion": true,
+			"settings": {
+				"fileUris": [
+					"https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/hana-db-single-node-infra-and-sw/scripts/windows-install-eclipse.cmd"
+				]
+			}
+		}
+	}
   ],
   "outputs": {
     "hostname": {
