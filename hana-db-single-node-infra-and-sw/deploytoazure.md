@@ -35,7 +35,7 @@ If you use exitsing Service Principal, please make sure to copy appId and passwo
 6\) Switch to HANA admin user by using command "sudo su - hn1adm" and run command "sapcontrol -nr 00 -Function Start" .  
 
 ## Advanced - How to check detailed installation trace:     
-1\) You can login to jumpbox VM as soon as it is shows Running state in Azure portal
+1\) You can login to jumpbox VM as soon as it is shows Running state in Azure portal  
 2\) You can switch to root by using "sudo su" and change directory to waagent using "cd /var/lib/waagent/custom-script/download/0"  
 3\) Now you can check "stdout" and "stderr" files.  
 
