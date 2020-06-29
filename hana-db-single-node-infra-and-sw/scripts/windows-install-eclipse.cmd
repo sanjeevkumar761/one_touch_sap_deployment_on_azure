@@ -18,9 +18,15 @@ powershell Invoke-WebRequest -OutFile jdk.msi -Uri https://softsap.blob.core.win
 
 msiexec /i jdk.msi /l*v C:\msilog.txt /qn
 
+echo Double click on Eclipse shortcut and setup default workspace > C:\Users\juser\Desktop\setup-hana-studio.txt
 echo In Eclipse, choose in the menu bar Help > Install New Software... > C:\Users\juser\Desktop\setup-hana-studio.txt
 echo In Eclipse, For Eclipse 2020-03 (4.15), add the URL https://tools.hana.ondemand.com/2020-03 >> C:\Users\juser\Desktop\setup-hana-studio.txt
 echo Press Enter to display the available features. >> C:\Users\juser\Desktop\setup-hana-studio.txt
 echo Select the desired features and choose Next. >> C:\Users\juser\Desktop\setup-hana-studio.txt
 echo On the next wizard page, you get an overview of the features to be installed. Choose Next. >> C:\Users\juser\Desktop\setup-hana-studio.txt
 echo Confirm the license agreements and choose Finish to start the installation. >> C:\Users\juser\Desktop\setup-hana-studio.txt
+
+echo Click Open Administration Console in Eclipse. >> C:\Users\juser\Desktop\setup-hana-studio.txt
+echo Click No to ignore password hint dialogue box. >> C:\Users\juser\Desktop\setup-hana-studio.txt
+echo Click Add system icon and enter private IP of HANA which is 10.0.0.6 and instance number 00 and select Multiple Containers and HN1 as Tenant database >> C:\Users\juser\Desktop\setup-hana-studio.txt
+echo Now enter HANA DB user which is SYSTEM and password Hana123456  >> C:\Users\juser\Desktop\setup-hana-studio.txt
