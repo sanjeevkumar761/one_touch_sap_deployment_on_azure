@@ -23,7 +23,7 @@ Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp 
 2\) Switch to root by using command "sudo su"  
 3\) SSH into HANA DB VM using command "ssh demo@hanadb" (accept key fingerprint of HANA DB VM when it prompts, by typing yes)  
 4\) Inside HANA DB VM, switch to HANA admin user by using command "sudo su - hn1adm"  
-5\) Check status of HANA DB processes by using command "sapcontrol -nr 00 -Function GetProcessList". You should be able to notice that status of all HANA DB processes is GREEN.  
+5\) Check status of HANA DB processes by using command "sapcontrol -nr 00 -function GetProcessList". You should be able to notice that status of all HANA DB processes is GREEN.  
 
 ## How to snooze (stop/start) HANA DB VM and jumpbox VM:      
 1\) To stop HANA DB, SSH to HANA DB VM, stop HANA processes by using command "sapcontrol -nr 00 -Function Stop"  
