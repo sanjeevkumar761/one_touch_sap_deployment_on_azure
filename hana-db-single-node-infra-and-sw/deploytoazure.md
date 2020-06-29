@@ -5,7 +5,8 @@ This creates infrastructure on Microsoft Azure and installs SAP HANA DB software
 It takes about 45-60 minutes for full deployment process to complete. Please follow the steps mentioned below:    
 
 ## Getting ready:  
-Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.
+Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.    
+If you use exitsing Service Principal, please make sure to copy appId and password/secret correctly.
 
 ## To deploy HANA, Click the button below:  
 
