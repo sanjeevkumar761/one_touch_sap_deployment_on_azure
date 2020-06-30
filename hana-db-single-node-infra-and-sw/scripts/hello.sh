@@ -58,4 +58,4 @@ az login --service-principal --username $2 --password $3 --tenant $4
 az deployment group create \
   --resource-group $5 \
   --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/hana-db-single-node-infra-and-sw/jumpbox-windows-deploy.json" \
-  --parameters adminUsername='juser' adminPassword='Welcome@123' dnsLabelPrefix='jbwin' windowsOSVersion='2016-Datacenter' vmSize='Standard_D2_v3' location=$6 vNetName='sapvnetonetouchdeployment' &
+  --parameters adminUsername='juser' adminPassword='Welcome@123' dnsLabelPrefix='jbwin' windowsOSVersion='2016-Datacenter' vmSize='Standard_D2_v3' location=$6 vNetName='sapvnetonetouchdeployment'
