@@ -166,7 +166,7 @@
 	{
     "apiVersion": "2018-06-01",
     "type": "Microsoft.Compute/virtualMachines/extensions",
-    "name": "virtualMachineName/config-app",
+    "name": "[concat(parameters('vmName'),'/wininstallcustomscript')]",
     "location": "[resourceGroup().location]",
     "dependsOn": [
         "[concat('Microsoft.Compute/virtualMachines/', variables('vmName'))]"
