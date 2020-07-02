@@ -182,7 +182,8 @@
 			"settings": {
 				"fileUris": [
 					"https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/hana-db-single-node-infra-and-sw/scripts/windows-install-eclipse.cmd"
-				]
+				],
+                    		"commandToExecute": "[concat('powershell windows-install-eclipse.cmd')]"
 			}
 		}
 	}
