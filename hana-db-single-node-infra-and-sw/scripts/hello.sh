@@ -10,7 +10,7 @@ apt-get upgrade -y
 apt-get install npm -y && npm i frontail -g 
 export ANSIBLE_HOST_KEY_CHECKING=False
 sleep 1m
-frontail -d /var/lib/waagent/custom-script/download/0/stdout /home/juser/ansible.log
+frontail -d /var/lib/waagent/custom-script/download/0/stdout /home/juser/ansible.log /home/juser/terraformpas.log
 npm install /home/juser/souvenir/nodejs/ && node /home/juser/souvenir/nodejs/index.js $5 $6 2>&1 | tee -a /home/juser/ansible.log &
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 sudo rm /var/lib/apt/lists/lock
