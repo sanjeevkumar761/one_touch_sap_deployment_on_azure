@@ -5,6 +5,7 @@ cat /dev/zero | ssh-keygen -q -N "" > /dev/null
 echo 'test log' >> /home/juser/terraform.log
 echo 'test log' >> /home/juser/ansible.log
 echo 'test log' >> /home/juser/terraformpas.log
+echo 'test log' >> /home/juser/ansiblepas.log
 apt-get update
 apt-get upgrade -y
 apt-get install npm -y && npm i frontail -g 
