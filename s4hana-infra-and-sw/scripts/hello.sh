@@ -58,5 +58,5 @@ cd souvenir/scenarios/hana-single-node-full
 rm -f terraform.tfvars
 cp ./dev/terraform/terraform.tfvars .
 terraform init
-terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -var az_region=$6 -var az_domain_name=$5 vnet_name=$7 subnet_name=$8 -auto-approve
+terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -var az_region=$6 -var az_domain_name=$5 -var vnet_name=$7 -var subnet_name=$8 -auto-approve
 ls
