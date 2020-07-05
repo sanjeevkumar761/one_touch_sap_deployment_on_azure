@@ -55,7 +55,7 @@
         "vNetName": "[parameters('virtualNetworkName')]",
         "subNetName": "[parameters('subnetName')]",
         "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
-        "subnetRef": "[resourceId(parameters('virtualNetworkResourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subnetName'))]",        "nicName": "[concat(parameters('vmName'), '-nic')]",
+        "subnetRef": "[resourceGroup().id, 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subnetName'))]",        "nicName": "[concat(parameters('vmName'), '-nic')]",
         "publicIPAddressName": "[concat(parameters('vmName'), '-publicIp')]",
         "diskName": "[concat(parameters('vmName'), '-disk')]",
         "subscriptionId": "[subscription().subscriptionId]",
