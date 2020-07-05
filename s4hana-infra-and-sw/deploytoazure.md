@@ -1,4 +1,4 @@
-# Deploy HANA DB Single Node to Azure
+# Deploy S/4HANA to Azure
 *You agree to the dislaimer mentioned at the bottom of this page, when you proceed further with the details and steps given below.*
 
 This creates infrastructure on Microsoft Azure and installs SAP HANA DB software.     
@@ -8,7 +8,7 @@ It takes about 45-60 minutes for full deployment process to complete. Please fol
 Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.    
 If you use exitsing Service Principal, please make sure to copy appId and password/secret correctly.
 
-## To deploy HANA, Click the button below:  
+## To deploy S/4HANA, Click the button below:  
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsanjeevkumar761%2Fone_touch_sap_deployment_on_azure%2Fmaster%2Fs4hana-infra-and-sw%2Fazuredeploy.json)
 
