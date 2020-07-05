@@ -8,6 +8,12 @@
         "description": "vNet name."
       }
     },
+    "subnetName": {
+      "type": "string",
+      "metadata": {
+        "description": "Subnet name."
+      }
+    },
     "adminUsername": {
       "type": "string",
       "metadata": {
@@ -55,7 +61,7 @@
     "storageAccountName": "[concat(uniquestring(resourceGroup().id), 'sawinvm')]",
     "nicName": "jumpboxwindows-nic",
     "addressPrefix": "10.0.0.0/16",
-    "subnetName": "default",
+    "subnetName": "[parameters('subNetName')]",
     "subnetPrefix": "10.0.0.0/24",
     "publicIPAddressName": "jumpboxwindows-publicIp",
     "vmName": "jumpboxwindows",
