@@ -1,12 +1,15 @@
 # Deploy SAP NetWeaver (ASCS, PAS) with HANA to Azure
 *You agree to the dislaimer mentioned at the bottom of this page, when you proceed further with the details and steps given below.*
 
-This creates infrastructure on Microsoft Azure and installs SAP HANA DB software.     
+This creates infrastructure on Microsoft Azure and installs SAP HANA DB software, including Netweaver ABAP. The SID number for the NW system is S40.    
 It takes about 45-60 minutes for full deployment process to complete. Please follow the steps mentioned below:    
 
 ## Getting ready:  
 Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.    
-If you use exitsing Service Principal, please make sure to copy appId and password/secret correctly.
+If you use an existing Service Principal, please make sure to copy appId and password/secret correctly.
+
+## Important note:
+Make sure you deploy the solution into a resource group which conforms to the naming conventions for Terraform/Ansible. This basically means no upper case letters, nor special characters like underscore. If in doubt, an all-lowercase RG name will work perfectly fine.
 
 ## To deploy SAP NetWeaver (ASCS, PAS) with HANA, Click the button below:  
 
