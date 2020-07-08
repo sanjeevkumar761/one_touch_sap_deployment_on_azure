@@ -32,8 +32,8 @@ Description: S4HANA
 System ID: S40  
 Instance Number: 00  
 Application Server: 10.0.0.7  
-9\) Click Finish and click Logon 
-10\) Now you can connect to S4HANA system by entering user details.  
+9\) Click Finish and click Logon   
+10\) Now you can logon to S4HANA system by entering user details.  
  
 ## Connect to HANA DB and confirm it is up and running:      
 1\) SSH into jumpboxlinx VM with its Public IP address using Putty or other SSH tool 
