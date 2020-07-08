@@ -26,13 +26,14 @@ If you use exitsing Service Principal, please make sure to copy appId and passwo
 4\) Run powershell script by typing on command line "sapgui-download-extract.ps1" and hit Enter  
 5\) Wait for SAP GUI zip file for download and extract SAP GUI software. It will start SAP GUI installer    
 6\) Click Next, Select "SAP GUI for Windows....", click Next and wait for SAP GUI installation to complete  
-7\) Click Finish to complete SAP GUI installation  
-8\) Double click SAP GUI shortcut on Desktop, Create new system long pad entry in SAP GUI with these details:    
+7\) Click Close to complete SAP GUI installation  
+8\) Double click SAP GUI Logon shortcut on Desktop, Click Next and Create new connection entry in SAP GUI with these details:    
 Description: S4HANA  
-SID: S40  
-Instance: 00  
-App Server: 10.0.0.7  
-9\) Now you can connect to S4HANA system by double clicking the above system logon pad entry on SAP GUI.  
+System ID: S40  
+Instance Number: 00  
+Application Server: 10.0.0.7  
+9\) Click Finish and click Logon 
+10\) Now you can connect to S4HANA system by entering user details.  
  
 ## Connect to HANA DB and confirm it is up and running:      
 1\) SSH into jumpboxlinx VM with its Public IP address using Putty or other SSH tool 
