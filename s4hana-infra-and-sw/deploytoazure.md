@@ -21,12 +21,13 @@ If you use exitsing Service Principal, please make sure to copy appId and passwo
 
 ## Connect using SAP GUI:        
 1\) Logon to Windows jumpbox (installed automatically as part of the installation process)    
-3\) Download file "sapgui-download-extract.ps1" from here https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw/scripts/sapgui-download-extract.ps1  
+3\) Download file "sapgui-download-extract.ps1" from here https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw/scripts/sapgui-download-extract.ps1   (This step will take about 10-15 minutes)  
 3\) Open Powershell and cd into directory "C:\Users\juser"  
 4\) Run powershell script by typing on command line "sapgui-download-extract.ps1" and hit Enter  
-4\) Wait for SAP GUI zip file for download and extract SAP GUI software  
-5\) cd into ""
-6\) Create new system long pad entry in SAP GUI with these details:    
+4\) Wait for SAP GUI zip file for download and extract SAP GUI software. It will start SAP GUI installer    
+5\) Click Next, Select "SAP GUI for Windows....", click Next and wait for SAP GUI installation to complete  
+6\) Click Finish to complete SAP GUI installation  
+6\) Double click SAP GUI shortcut on Desktop, Create new system long pad entry in SAP GUI with these details:    
 Description: S4HANA  
 SID: S40  
 Instance: 00  
