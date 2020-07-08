@@ -16,9 +16,21 @@ If you use exitsing Service Principal, please make sure to copy appId and passwo
 1\) Wait for initial deployment to complete in Azure portal. You'll see the message "Your deployment is complete" in Azure portal. It deploys a jumpbox on Azure  
 2\) Go to your Resource Group in Azure portal, locate the VM named "jumpboxlinux" and look for its Public IP address  
 3\) *Wait for about 10 minutes* for installation monitoring layer inside jumpboxlinux VM to be ready \(It prepares automatically in background\)   
-4\) Now, you can check installation progress on URL http://\<public IP of your jumpboxlinux VM\>:3000  \(you need to refresh the page manually to check progress until the Deployment progress reaches 100% which takes about 40-50 minutes)  
+4\) Now, you can check installation progress on URL http://\<public IP of your jumpboxlinux VM\>:3000  \(you need to refresh the page manually to check progress until the Deployment progress reaches 100% which takes about 2 to 3 hours)  
 5\) You can check detailed installation logs on URL http://\<public IP of your jumpboxlinux VM\>:9001  
 
+## Connect using SAP GUI:      
+1\) Logon to Windows jumpbox (installed automatically as part of the installation process)  
+3\) Download file "sapgui-download-extract.ps1" from here https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw/scripts/sapgui-download-extract.ps1
+3\) Open Powershell and cd into directory "C:\Users\juser"
+4\) Run powershell script by typing on command line "sapgui-download-extract.ps1" and hit Enter
+4\) Wait for SAP GUI zip file for download and extract SAP GUI software
+5\) cd into ""
+
+2\) Switch to root by using command "sudo su"  
+3\) SSH into HANA DB VM using command "ssh demo@hanadb" (accept key fingerprint of HANA DB VM when it prompts, by typing yes)  
+4\) Inside HANA DB VM, switch to HANA admin user by using command "sudo su - hn1adm"  
+5\) Check status of HANA DB processes by using command "sapcontrol -nr 00 -function GetProcessList". You should be able to notice that status of all HANA DB processes is GREEN.  
 ## Connect to HANA DB and confirm it is up and running:      
 1\) SSH into jumpboxlinx VM with its Public IP address using Putty or other SSH tool ( user: juser, password: Welcome@123 )   
 2\) Switch to root by using command "sudo su"  
