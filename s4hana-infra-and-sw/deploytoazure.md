@@ -8,6 +8,8 @@ It takes about 45-60 minutes for full deployment process to complete. Please fol
 Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.    
 If you use exitsing Service Principal, please make sure to copy appId and password/secret correctly.
 
+Make sure to use Azure resource group name and vnet name are in lower case, no underscore character and no special characters.
+
 ## To deploy SAP S/4HANA, Click the button below:  
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsanjeevkumar761%2Fone_touch_sap_deployment_on_azure%2Fmaster%2Fs4hana-infra-and-sw%2Fazuredeploy.json)
