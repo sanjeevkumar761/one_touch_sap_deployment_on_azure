@@ -86,7 +86,7 @@
                 },
                 "subnets": [
                     {
-                        "name": "default",
+                        "name": "[variables('subNetName')]",
                         "properties": {
                             "addressPrefix": "10.0.0.0/24"
                         }
