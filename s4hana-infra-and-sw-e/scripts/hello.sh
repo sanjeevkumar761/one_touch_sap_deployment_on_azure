@@ -12,7 +12,7 @@ apt-get install npm -y && npm i frontail -g
 export ANSIBLE_HOST_KEY_CHECKING=False
 sleep 1m
 frontail -d /var/lib/waagent/custom-script/download/0/stdout /home/juser/ansible.log /home/juser/terraformpas.log /home/juser/ansiblepas.log
-npm install /home/juser/souvenir/s4hana-nodejs/ && node /home/juser/souvenir/s4hana-nodejs/index.js $5 $6 $7 $8 2>&1 | tee -a /home/juser/ansible.log &
+npm install /home/juser/souvenir/s4hana-nodejs-e/ && node /home/juser/souvenir/s4hana-nodejs-e/index.js $5 $6 $7 $8 2>&1 | tee -a /home/juser/ansible.log &
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 sudo rm /var/lib/apt/lists/lock
 sudo rm /var/cache/apt/archives/lock
@@ -53,10 +53,8 @@ sudo rm /var/lib/dpkg/lock*
 apt-get install axel
 axel https://softsap.blob.core.windows.net/sapsoft/IMDB_SERVER20_047_0-80002031.SAR
 az login --service-principal --username $2 --password $3 --tenant $4
-az deployment group create  --resource-group $5 --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/hana-db-single-node-infra-and-sw/jumpbox-windows-deploy.json" --parameters adminUsername='juser' adminPassword='Hana@123456' windowsOSVersion='2016-Datacenter' vmSize='Standard_D2_v3' location=$6 vNetName=$7
-cd souvenir/scenarios/hana-single-node-full
-rm -f terraform.tfvars
-cp ./dev/terraform/terraform.tfvars .
+# az deployment group create  --resource-group $5 --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/hana-db-single-node-infra-and-sw/jumpbox-windows-deploy.json" --parameters adminUsername='juser' adminPassword='Hana@123456' windowsOSVersion='2016-Datacenter' vmSize='Standard_D2_v3' location=$6 vNetName=$7
+cd souvenir/scenarios/hana-single-node-full-e/dev/terraform
 terraform init
 terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -var az_region=$6 -var az_domain_name=$5 -var vnet_name=$7 -var subnet_name=$8 -auto-approve
 ls
