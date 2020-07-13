@@ -63,7 +63,6 @@
     "addressPrefix": "10.0.0.0/16",
     "subnetName": "[parameters('subNetName')]",
     "subnetPrefix": "10.0.0.0/24",
-    "publicIPAddressName": "jumpboxwindows-publicIp",
     "vmName": "jumpboxwindows",
     "virtualNetworkName": "[parameters('vNetName')]",
     "subnetRef": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworkName'), variables('subnetName'))]",
@@ -82,34 +81,16 @@
       "properties": {}
     },
     {
-      "type": "Microsoft.Network/publicIPAddresses",
-      "apiVersion": "2018-11-01",
-      "name": "[variables('publicIPAddressName')]",
-      "location": "[parameters('location')]",
-      "properties": {
-        "publicIPAllocationMethod": "Dynamic",
-        "dnsSettings": {
-          "domainNameLabel": "[concat(resourceGroup().name, 'win')]"
-        }
-      }
-    },
-    {
       "type": "Microsoft.Network/networkInterfaces",
       "apiVersion": "2018-11-01",
       "name": "[variables('nicName')]",
       "location": "[parameters('location')]",
-      "dependsOn": [
-        "[resourceId('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]"
-      ],
       "properties": {
         "ipConfigurations": [
           {
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Dynamic",
-              "publicIPAddress": {
-                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
-              },
               "subnet": {
                 "id": "[variables('subnetRef')]"
               }
@@ -197,7 +178,7 @@
   "outputs": {
     "hostname": {
       "type": "string",
-      "value": "[reference(variables('publicIPAddressName')).Settings.fqdn]"
+      "value": "win"
     }
   }
 }
