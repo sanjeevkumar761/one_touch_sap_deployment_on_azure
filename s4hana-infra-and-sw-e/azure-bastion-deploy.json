@@ -50,7 +50,7 @@
             "name": "[parameters('bastionHostName')]",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceGroup().id, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
+                "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -58,10 +58,10 @@
                         "name": "IpConf",
                         "properties": {
                             "subnet": {
-                                "id": "[resourceGroup().id, 'Microsoft.Network/virtualNetworks/subnets', parameters('existingVNETName'),parameters('subnetName'))]"
+                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', parameters('existingVNETName'),parameters('subnetName'))]"
                             },
                             "publicIPAddress": {
-                                "id": "[resourceGroup().id, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
+                                "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
                             }
                         }
                     }
