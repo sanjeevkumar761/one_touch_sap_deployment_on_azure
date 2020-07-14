@@ -55,7 +55,7 @@ axel https://softsap.blob.core.windows.net/sapsoft/IMDB_SERVER20_047_0-80002031.
 az login --service-principal --username $2 --password $3 --tenant $4
 if [ "$9" == "yes" ]
 then
-    az deployment group create  --resource-group $5 --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/jumpbox-windows-deploy.json" --parameters adminUsername='juser' adminPassword='Hana@123456' windowsOSVersion='2016-Datacenter' vmSize='Standard_D2_v3' location=$6 vNetName=$7 subnetName=$8
+    az deployment group create  --resource-group $5 --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/azure-bastion-deploy.json" --parameters location=$6 resourceGroup=$6 bastionHostName='s4bastion' subnetName='AzureBastionSubnet' publicIpAddressName='s4bastionpublicip' existingVNETName=$7 subnetAddressPrefix='10.0.1.0/27'
 else
     echo "Asked not to create bastion"
 fi
