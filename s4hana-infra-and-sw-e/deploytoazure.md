@@ -22,6 +22,22 @@ az deployment group create --resource-group <resource group name> --template-uri
 4\) Now, you can check installation progress on URL http://\<public IP of your jumpboxlinux VM\>:3000  \(you need to refresh the page manually to check progress until the Deployment progress reaches 100% which takes about 40-50 minutes)  
 5\) You can check detailed installation logs on URL http://\<public IP of your jumpboxlinux VM\>:9001  
 
+## Connect using SAP GUI:        
+1\) Logon to Windows jumpbox (installed automatically as part of the installation process)    
+2\) Download file "sapgui-download-extract.ps1" from here https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw/scripts/sapgui-download-extract.ps1   (This step will take about 10-15 minutes)  
+3\) Open Powershell and cd into directory "C:\Users\juser"  
+4\) Run powershell script by typing on command line "sapgui-download-extract.ps1" and hit Enter  
+5\) Wait for SAP GUI zip file for download and extract SAP GUI software. It will start SAP GUI installer    
+6\) Click Next, Select "SAP GUI for Windows....", click Next and wait for SAP GUI installation to complete  
+7\) Click Close to complete SAP GUI installation  
+8\) Double click SAP GUI Logon shortcut on Desktop, Click Next and Create new connection entry in SAP GUI with these details:    
+Description: S4HANA  
+System ID: S40  
+Instance Number: 00  
+Application Server: 10.0.0.7  
+9\) Click Finish and click Logon   
+10\) Now you can logon to S4HANA system by entering user details.  
+
 ## Connect to HANA DB and confirm it is up and running:      
 1\) SSH into jumpboxlinx VM with its Public IP address using Putty or other SSH tool ( user: juser, password: Welcome@123 )   
 2\) Switch to root by using command "sudo su"  
