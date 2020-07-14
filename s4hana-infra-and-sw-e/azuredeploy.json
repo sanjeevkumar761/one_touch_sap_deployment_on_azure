@@ -57,7 +57,6 @@
         "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
         "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subNetName'))]",        
         "nicName": "[concat(parameters('vmName'), '-nic')]",
-        "publicIPAddressName": "[concat(parameters('vmName'), '-publicIp')]",
         "diskName": "[concat(parameters('vmName'), '-disk')]",
         "subscriptionId": "[subscription().subscriptionId]",
         "tenantId": "[subscription().tenantId]",
@@ -107,27 +106,9 @@
         },
         {
             "apiVersion": "2018-10-01",
-            "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[variables('publicIPAddressName')]",
-            "location": "[variables('location')]",
-            "tags": {
-                "displayName": "PublicIPAddress"
-            },
-            "properties": {
-                "publicIPAllocationMethod": "Dynamic",
-                "dnsSettings": {
-                    "domainNameLabel": "[concat('vm-', uniqueString(resourceGroup().id))]"
-                }
-            }
-        },
-        {
-            "apiVersion": "2018-10-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
             "location": "[variables('location')]",
-            "dependsOn": [
-                "[variables('publicIPAddressName')]"
-            ],
             "tags": {
                 "displayName": "NetworkInterface"
             },
@@ -137,9 +118,6 @@
                         "name": "ipconfig1",
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
-                            "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddressName'))]"
-                            },
                             "subnet": {
                                 "id": "[variables('subnetRef')]"
                             }
