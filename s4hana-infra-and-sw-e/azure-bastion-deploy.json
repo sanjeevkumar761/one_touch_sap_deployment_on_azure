@@ -5,9 +5,6 @@
         "location": {
             "type": "string"
         },
-        "resourceGroup": {
-            "type": "string"
-        },
         "bastionHostName": {
             "type": "string"
         },
@@ -53,7 +50,7 @@
             "name": "[parameters('bastionHostName')]",
             "location": "[parameters('location')]",
             "dependsOn": [
-                "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
+                "[resourceGroup().id, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
             ],
             "properties": {
                 "ipConfigurations": [
@@ -61,10 +58,10 @@
                         "name": "IpConf",
                         "properties": {
                             "subnet": {
-                                "id": "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/virtualNetworks/subnets', parameters('existingVNETName'),parameters('subnetName'))]"
+                                "id": "[resourceGroup().id, 'Microsoft.Network/virtualNetworks/subnets', parameters('existingVNETName'),parameters('subnetName'))]"
                             },
                             "publicIPAddress": {
-                                "id": "[resourceId(parameters('resourceGroup'), 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
+                                "id": "[resourceGroup().id, 'Microsoft.Network/publicIpAddresses', parameters('publicIpAddressName'))]"
                             }
                         }
                     }
