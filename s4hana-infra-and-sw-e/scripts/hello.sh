@@ -11,9 +11,9 @@ apt-get upgrade -y
 apt-get install npm -y && npm i frontail -g 
 export ANSIBLE_HOST_KEY_CHECKING=False
 sleep 1m
+curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 frontail -d /var/lib/waagent/custom-script/download/0/stdout /home/juser/ansible.log /home/juser/terraformpas.log /home/juser/ansiblepas.log
 npm install /home/juser/souvenir/s4hana-nodejs-e/ && node /home/juser/souvenir/s4hana-nodejs-e/index.js $5 $6 $7 $8 2>&1 | tee -a /home/juser/ansible.log &
-curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 sudo rm /var/lib/apt/lists/lock
 sudo rm /var/cache/apt/archives/lock
 sudo rm /var/lib/dpkg/lock*
@@ -55,7 +55,7 @@ axel https://softsap.blob.core.windows.net/sapsoft/IMDB_SERVER20_047_0-80002031.
 az login --service-principal --username $2 --password $3 --tenant $4
 #if [ "$9" == "yes" ]
 #then
-    az deployment group create  --resource-group $5 --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/azure-bastion-deploy.json" --parameters location=$6 resourceGroup=$6 bastionHostName='s4bastion' subnetName='AzureBastionSubnet' publicIpAddressName='s4bastionpublicip' existingVNETName=$7 subnetAddressPrefix='10.0.1.0/27'
+az deployment group create  --resource-group $5 --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/azure-bastion-deploy.json" --parameters location=$6 resourceGroup=$6 bastionHostName='s4bastion' subnetName='AzureBastionSubnet' publicIpAddressName='s4bastionpublicip' existingVNETName=$7 subnetAddressPrefix='10.0.1.0/27'
 #else
 #    echo "Asked not to create bastion"
 #fi
