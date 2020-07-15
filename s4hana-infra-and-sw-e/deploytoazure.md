@@ -1,7 +1,7 @@
 # Deploy SAP S/4HANA to Azure (No public IPs)
 *You agree to the dislaimer mentioned at the bottom of this page, when you proceed further with the details and steps given below.*
 
-This creates infrastructure on Microsoft Azure and installs SAP HANA DB software.     
+This creates infrastructure on Microsoft Azure and installs SAP HANA, ASCS and CI instances for S4HANA1909.     
 It takes about 45-60 minutes for full deployment process to complete. Please follow the steps mentioned below:    
 
 ## Getting ready:  
