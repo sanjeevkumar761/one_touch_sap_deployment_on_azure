@@ -5,8 +5,9 @@ This creates infrastructure on Microsoft Azure and installs SAP HANA DB software
 It takes about 45-60 minutes for full deployment process to complete. Please follow the steps mentioned below:    
 
 ## Getting ready:  
-Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.    
-If you use exitsing Service Principal, please make sure to copy appId and password/secret correctly.
+1. Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.    
+If you use exitsing Service Principal, please make sure to copy appId and password/secret correctly.  
+2. Create a reource group (with all lowercase characters in name, no special characters), create two subnets - one for SAP workload and second for Azure Bastion. The Azure Bastion subnet must be named "AzureBastionSubnet" and This subnet must be at least /27 or larger e.g., 10.0.1.0/27 .  
 
 ## To deploy SAP S/4HANA (without public IPs), Click the button below:  
 
