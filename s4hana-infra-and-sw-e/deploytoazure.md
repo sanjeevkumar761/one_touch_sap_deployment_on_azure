@@ -11,6 +11,8 @@ If you use exitsing Service Principal, please make sure to copy appId and passwo
 
 ## To deploy SAP S/4HANA (without public IPs), Click the button below:  
 
+While deploying to Azure, make sure to select existing resource group, vNet and subNet (for SAP workload) which you would have created as mentioned in above section. 
+
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsanjeevkumar761%2Fone_touch_sap_deployment_on_azure%2Fmaster%2Fs4hana-infra-and-sw-e%2Fazuredeploy.json)  
 
 Altrenatively, yon can initiate the deployment using Azure CLI. The command is:   
