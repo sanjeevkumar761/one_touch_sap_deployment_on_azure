@@ -152,10 +152,25 @@
             "properties": {}
         },
         {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-11-01",
+            "name": "publicipvm",
+            "location": "[variables('location')]",
+            "properties": {
+              "publicIPAllocationMethod": "Dynamic",
+              "dnsSettings": {
+                "domainNameLabel": "publicipvmdns"
+              }
+            }
+        },
+        {
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
             "location": "[variables('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses/', variables('publicIPAddressName'))]"
+              ],
             "tags": {
                 "displayName": "NetworkInterface"
             },
@@ -165,6 +180,9 @@
                         "name": "ipconfig1",
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses',variables('publicIPAddressName'))]"
+                              },
                             "subnet": {
                                 "id": "[variables('subnetRef')]"
                             }
