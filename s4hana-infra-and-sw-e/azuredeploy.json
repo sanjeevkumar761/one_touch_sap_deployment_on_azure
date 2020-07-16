@@ -20,6 +20,13 @@
               "description": "Name of the existing VNET"
             }
         },    
+        "vNetAddressSpace": {
+            "type": "string",
+            "defaultValue": "10.0.0.0/16",
+            "metadata": {
+              "description": "vNet Address Space"
+            }
+        },    
         "subnetName": {
             "type": "string",
             "defaultValue": "default",
@@ -27,6 +34,27 @@
               "description": "Name of the subnet in the virtual network you want to use"
             }
         },
+        "subnetAddressSpace": {
+            "type": "string",
+            "defaultValue": "10.0.0.0/24",
+            "metadata": {
+              "description": "subnet Address Space"
+            }
+        },    
+        "hanadbIp": {
+            "type": "string",
+            "defaultValue": "10.0.0.6",
+            "metadata": {
+              "description": "HANA DB IP"
+            }
+        },    
+        "pasIp": {
+            "type": "string",
+            "defaultValue": "10.0.0.7",
+            "metadata": {
+              "description": "PAS IP"
+            }
+        },    
         "vmName": {
             "type": "string",
             "defaultValue": "jumpboxlinux",
@@ -70,6 +98,10 @@
         "clientId": "[parameters('servicePrincipalAppId')]",
         "clientSecret": "[parameters('servicePrincipalPassword')]",
         "rg": "[resourceGroup().name]",
+        "vNetAddressSpace": "[parameters('vNetAddressSpace')]",
+        "subnetAddressSpace": "[parameters('subnetAddressSpace')]",
+        "hanadbIp": "[parameters('hanadbIp')]",
+        "pasIp": "[parameters('pasIp')]",
         "arguments": {
             "AZURE_SUBSCRIPTION_ID": "[variables('subscriptionId')]",
             "AZURE_CLIENT_ID": "[variables('clientId')]",
@@ -196,7 +228,7 @@
                     "fileUris": [
                         "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/scripts/hello.sh"
                     ],
-                    "commandToExecute": "[concat('sudo sh hello.sh ', variables('subscriptionId') , ' ' , variables('clientId') ,  ' ' , variables('clientSecret') ,  ' ' , variables('tenantId') ,  ' ' , variables('rg') ,  ' ' , variables('location') , ' ' , variables('vNetName') ,  ' ' , variables('subNetName') ,  ' &' )]"
+                    "commandToExecute": "[concat('sudo sh hello.sh ', variables('subscriptionId') , ' ' , variables('clientId') ,  ' ' , variables('clientSecret') ,  ' ' , variables('tenantId') ,  ' ' , variables('rg') ,  ' ' , variables('location') , ' ' , variables('vNetName') ,  ' ' , variables('subNetName') ,   ' ' , variables('vNetAddressSpace') ,  ' ' , variables('subnetAddressSpace') ,  ' ' , variables('hanadbIp') ,  ' ' , variables('pasIp') , ' &' )]"
                 }
             }
         }

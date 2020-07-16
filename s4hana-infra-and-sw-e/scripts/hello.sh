@@ -26,9 +26,9 @@ pip install msrestazure
 pip install msrest
 pip install azure-storage
 echo '[hanadb]' >> /etc/ansible/hosts
-echo '10.0.0.6 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
+echo '$11 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
 echo '[pas]' >> /etc/ansible/hosts
-echo '10.0.0.7 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
+echo '$12 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
 apt-get install unzip -y
 wget https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
 apt install unzip
@@ -62,5 +62,5 @@ az deployment group create  --resource-group $5 --template-uri "https://raw.gith
 az deployment group create  --resource-group $5 --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/jumpbox-windows-deploy.json" --parameters adminUsername='juser' adminPassword='Hana@123456' windowsOSVersion='2016-Datacenter' vmSize='Standard_D2_v3' location=$6 vNetName=$7 subnetName=$8
 cd souvenir/scenarios/hana-single-node-full-e/dev/terraform
 terraform init
-terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -var az_region=$6 -var az_domain_name=$5 -var vnet_name=$7 -var subnet_name=$8 -auto-approve
+terraform apply -var net_rg_name=$5 -var az_resource_group=$5 -var az_region=$6 -var az_domain_name=$5 -var vnet_name=$7 -var subnet_name=$8 -var private_ip_address_hdb=$11 -auto-approve
 ls
