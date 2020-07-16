@@ -55,6 +55,13 @@
               "description": "PAS IP"
             }
         },    
+        "createAzureBastion": {
+            "type": "string",
+            "defaultValue": "yes",
+            "metadata": {
+                "description": "Should it create Azure Bastion?"
+            }
+        },        
         "bastionAddressSpace": {
             "type": "string",
             "defaultValue": "10.0.1.0/27",
@@ -69,13 +76,13 @@
                 "description": "Name of the VM"
             }
         },
-        "createAzureBastion": {
+        "jumpboxPublicIpNewOrExisting": {
             "type": "string",
-            "defaultValue": "yes",
+            "defaultValue": "new",
             "metadata": {
-                "description": "Should it create Azure Bastion?"
+              "description": "Determines whether or not a new public ip should be provisioned."
             }
-        },
+          },
         "servicePrincipalAppId": {
             "type": "string",
             "defaultValue": "",
@@ -109,7 +116,8 @@
         "subnetAddressSpace": "[parameters('subnetAddressSpace')]",
         "hanadbIp": "[parameters('hanadbIp')]",
         "pasIp": "[parameters('pasIp')]",
-        "bastionAddressSpace": "[parameters('bastionAddressSpace')]",        
+        "bastionAddressSpace": "[parameters('bastionAddressSpace')]",    
+        "createAzureBastion": "[parameters('createAzureBastion')]",     
         "arguments": {
             "AZURE_SUBSCRIPTION_ID": "[variables('subscriptionId')]",
             "AZURE_CLIENT_ID": "[variables('clientId')]",
@@ -152,6 +160,7 @@
             "properties": {}
         },
         {
+            "condition": "[equals(parameters('jumpboxPublicIpNewOrExisting'), 'new')]",
             "type": "Microsoft.Network/publicIPAddresses",
             "apiVersion": "2018-11-01",
             "name": "publicipvm",
@@ -254,7 +263,7 @@
                     "fileUris": [
                         "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/scripts/hello.sh"
                     ],
-                    "commandToExecute": "[concat('sudo sh hello.sh ', variables('subscriptionId') , ' ' , variables('clientId') ,  ' ' , variables('clientSecret') ,  ' ' , variables('tenantId') ,  ' ' , variables('rg') ,  ' ' , variables('location') , ' ' , variables('vNetName') ,  ' ' , variables('subNetName') ,   ' ' , variables('vNetAddressSpace') ,  ' ' , variables('subnetAddressSpace') ,  ' ' , variables('hanadbIp') ,  ' ' , variables('pasIp') ,  ' '  , variables('bastionAddressSpace'), ' &' )]"
+                    "commandToExecute": "[concat('sudo sh hello.sh ', variables('subscriptionId') , ' ' , variables('clientId') ,  ' ' , variables('clientSecret') ,  ' ' , variables('tenantId') ,  ' ' , variables('rg') ,  ' ' , variables('location') , ' ' , variables('vNetName') ,  ' ' , variables('subNetName') ,   ' ' , variables('vNetAddressSpace') ,  ' ' , variables('subnetAddressSpace') ,  ' ' , variables('hanadbIp') ,  ' ' , variables('pasIp') ,  ' '  , variables('bastionAddressSpace'),  ' '  , variables('createAzureBastion'), ' &' )]"
                 }
             }
         }
