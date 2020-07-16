@@ -21,6 +21,9 @@ apt-add-repository ppa:ansible/ansible
 apt-get update
 apt-get install ansible -y
 apt install python-pip -y
+sudo rm /var/lib/apt/lists/lock
+sudo rm /var/cache/apt/archives/l
+sudo rm /var/lib/dpkg/lock*
 pip install azure
 pip install msrestazure
 pip install msrest
