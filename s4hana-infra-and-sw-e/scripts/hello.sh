@@ -13,7 +13,7 @@ export ANSIBLE_HOST_KEY_CHECKING=False
 sleep 1m
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 frontail -d /var/lib/waagent/custom-script/download/0/stdout /home/juser/ansible.log /home/juser/terraformpas.log /home/juser/ansiblepas.log
-npm install /home/juser/souvenir/s4hana-nodejs-e/ && node /home/juser/souvenir/s4hana-nodejs-e/index.js $5 $6 $7 $8 2>&1 | tee -a /home/juser/ansible.log &
+npm install /home/juser/souvenir/s4hana-nodejs-e/ && node /home/juser/souvenir/s4hana-nodejs-e/index.js $5 $6 $7 $8 $12 2>&1 | tee -a /home/juser/ansible.log &
 sudo rm /var/lib/apt/lists/lock
 sudo rm /var/cache/apt/archives/lock
 sudo rm /var/lib/dpkg/lock*
