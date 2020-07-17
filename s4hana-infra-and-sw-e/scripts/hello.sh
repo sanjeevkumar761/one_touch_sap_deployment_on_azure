@@ -31,9 +31,9 @@ pip install azure-storage
 hanaIp=$11
 pasIp=$12
 echo '[hanadb]' >> /etc/ansible/hosts
-echo '$hanaIp ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
+echo $hanaIp ' ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
 echo '[pas]' >> /etc/ansible/hosts
-echo '$pasIp ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
+echo $pasIp ' ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
 apt-get install unzip -y
 wget https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
 apt install unzip
