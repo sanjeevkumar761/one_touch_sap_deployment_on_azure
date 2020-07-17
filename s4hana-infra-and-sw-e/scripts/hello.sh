@@ -28,10 +28,12 @@ pip install azure
 pip install msrestazure
 pip install msrest
 pip install azure-storage
+hanaIp=$11
+pasIp=$12
 echo '[hanadb]' >> /etc/ansible/hosts
-echo '$11 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
+echo '$hanaIp ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
 echo '[pas]' >> /etc/ansible/hosts
-echo '$12 ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
+echo '$pasIp ansible_user=demo ansible_ssh_private_key_file=/root/.ssh/id_rsa' >> /etc/ansible/hosts
 apt-get install unzip -y
 wget https://releases.hashicorp.com/terraform/0.12.28/terraform_0.12.28_linux_amd64.zip
 apt install unzip
@@ -56,11 +58,10 @@ sudo rm /var/lib/dpkg/lock*
 apt-get install axel
 axel https://softsap.blob.core.windows.net/sapsoft/IMDB_SERVER20_047_0-80002031.SAR
 az login --service-principal --username $2 --password $3 --tenant $4
-if [ "$14" == "yes" ]
+bastionRequired=$14
+if [ "$bastionRequired" = "yes" ]
 then
 az deployment group create  --resource-group $5 --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/azure-bastion-deploy.json" --parameters location=$6 bastionHostName='s4bastion' subnetName='AzureBastionSubnet' publicIpAddressName='s4bastionpublicip' existingVNETName=$7 subnetAddressPrefix=$13
-else
-    echo "Asked not to create bastion"
 fi
 az deployment group create  --resource-group $5 --template-uri "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/jumpbox-windows-deploy.json" --parameters adminUsername='juser' adminPassword='Hana@123456' windowsOSVersion='2016-Datacenter' vmSize='Standard_D2_v3' location=$6 vNetName=$7 subnetName=$8
 cd souvenir/scenarios/hana-single-node-full-e/dev/terraform
