@@ -7,7 +7,7 @@ It takes about 120-150 minutes for full deployment process to complete. Please f
 ## Getting ready:  
 1. Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.    
 If you use exitsing Service Principal, please make sure to copy appId and password/secret correctly.  
-2. Create a reource group (with all lowercase characters in name, no special characters), create a Vnet (with 10.0.0.0/16 address space, in same region as resource group, all lowercase characters in vNet name), then create two subnets - one for SAP workload (with address space 10.0.0.0/24) and second for Azure Bastion. The Azure Bastion subnet must be named "AzureBastionSubnet" and This subnet must be at least /27 or larger e.g., 10.0.1.0/27 .  
+2. Create a reource group (with all lowercase characters in name, no special characters), create a Vnet (with 10.0.0.0/16 address space, in same region as resource group, all lowercase characters in vNet name), then create two subnets - one for SAP workload (with address space 10.0.0.0/24) and second for Azure Bastion (if you need Azure Bastion, else select 'no'). The Azure Bastion subnet must be named "AzureBastionSubnet" and This subnet must be at least /27 or larger e.g., 10.0.1.0/27 . If you need public IP address for jumpboxlinux, then select 'yes' (as is the default value) for jumpboxlinux. 
 
 ## To deploy SAP S/4HANA (without public IPs), Click the button below:  
 
