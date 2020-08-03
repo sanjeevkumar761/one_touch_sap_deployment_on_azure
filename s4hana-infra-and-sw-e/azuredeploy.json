@@ -76,20 +76,6 @@
                 "description": "Name of the VM"
             }
         },
-        "jumpboxPublicIpNewOrExisting": {
-            "type": "string",
-            "defaultValue": "new",
-            "metadata": {
-              "description": "Determines whether or not a new public ip should be provisioned."
-            }
-          },
-          "jumpboxPublicIpName": {
-            "type": "string",
-            "defaultValue": "PublicIp",
-            "metadata": {
-              "description": "Name of the public ip address"
-            }
-          },
         "servicePrincipalAppId": {
             "type": "string",
             "defaultValue": "",
@@ -166,17 +152,8 @@
             "kind": "Storage",
             "properties": {}
         },
-        {
-            "condition": "[equals(parameters('jumpboxPublicIpNewOrExisting'), 'new')]",
-            "type": "Microsoft.Network/publicIPAddresses",
-            "apiVersion": "2018-11-01",
-            "name": "publicipvm",
-            "location": "[variables('location')]",
-            "properties": {
-              "publicIPAllocationMethod": "Dynamic"
-            }
-        },
-        {
+       
+                {
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
@@ -190,10 +167,7 @@
                         "name": "ipconfig1",
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
-                            "publicIPAddress": {
-                                "id": "[if(equals(parameters('jumpboxPublicIpNewOrExisting'), 'new'), resourceId(resourceGroup().name, 'Microsoft.Network/publicIPAddresses', parameters('jumpboxPublicIpName')) , json('null'))]"
-                              },
-                            "subnet": {
+                             "subnet": {
                                 "id": "[variables('subnetRef')]"
                             }
                         }
