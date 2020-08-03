@@ -33,4 +33,42 @@ stages:
 
             az group create -l northeurope -n $(resource_group)-test
             ls $(Build.Repository.LocalPath)
-            az deployment group create --resource-group $(resource_group)-test --template-file $(Build.Repository.LocalPath)/s4hana-infra-and-sw-e/azuredeploy.json --parameters vNetNewOrExisting=new virtualNetworkName=sapvnet vNetAddressSpace="10.0.0.0/16" subnetName=default subnetAddressSpace="10.0.0.0/24" hanadbIp="10.0.0.6" pasIp="10.0.0.7" createAzureBastion="no" vmName=jumpboxlinux servicePrincipalAppId="5f7565e5-991d-4852-8913-8356d6125cd0" servicePrincipalPassword=$(service_principal_password)
+            az deployment group create --resource-group $(resource_group)-test --template-file $(Build.Repository.LocalPath)/s4hana-infra-and-sw-e/azuredeploy.json --parameters vNetNewOrExisting=new virtualNetworkName=sapvnet vNetAddressSpace="10.0.0.0/16" subnetName=default subnetAddressSpace="10.0.0.0/24" hanadbIp="10.0.0.6" pasIp="10.0.0.7" createAzureBastion="yes" bastionAddressSpace="10.0.1.0/27" vmName=jumpboxlinux servicePrincipalAppId="5f7565e5-991d-4852-8913-8356d6125cd0" servicePrincipalPassword=$(service_principal_password)
+
+  - stage: test
+    displayName: Test
+    jobs:
+    - job: Test
+      steps:
+        - task: AzureCLI@2
+          inputs:
+            azureSubscription: 'souvenirconnection'
+            scriptType: 'bash'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              echo "In Test stage"
+            
+        - task: CopyFiles@2
+          inputs:
+            SourceFolder: '$(Build.Repository.LocalPath)'
+            Contents: '**'
+            TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+        - task: PublishBuildArtifacts@1
+          inputs:
+              PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+              ArtifactName: 'taggedgitcode'
+              publishLocation: 'Container'
+
+  - stage: clean
+    displayName: Clean up resources
+    jobs:
+    - job: clean
+      steps:
+        - task: AzureCLI@2
+          inputs:
+            azureSubscription: 'souvenirconnection'
+            scriptType: 'bash'
+            scriptLocation: 'inlineScript'
+            inlineScript: |
+              #az group delete -n $(resource_group)-test --yes
