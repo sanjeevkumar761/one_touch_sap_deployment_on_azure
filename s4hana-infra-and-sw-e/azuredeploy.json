@@ -149,6 +149,9 @@
             "tags": {
                 "displayName": "NetworkInterface"
             },
+            "dependsOn": [
+                "[variables('subNetName')]"
+            ],
             "properties": {
                 "ipConfigurations": [
                     {
