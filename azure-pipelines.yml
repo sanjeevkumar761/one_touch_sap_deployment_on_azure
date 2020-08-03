@@ -42,7 +42,7 @@ stages:
     steps:
       - task: AzureCLI@2
         inputs:
-          azureSubscription: 'souvenirconnection'
+          azureSubscription: 'saponazurecsasanj1(bf44c08e-5fa3-4f73-987c-3a51f2d22b00)'
           scriptType: 'bash'
           scriptLocation: 'inlineScript'
           inlineScript: |
@@ -67,7 +67,7 @@ stages:
     steps:
       - task: AzureCLI@2
         inputs:
-          azureSubscription: 'souvenirconnection'
+          azureSubscription: 'saponazurecsasanj1(bf44c08e-5fa3-4f73-987c-3a51f2d22b00)'
           scriptType: 'bash'
           scriptLocation: 'inlineScript'
           inlineScript: |
