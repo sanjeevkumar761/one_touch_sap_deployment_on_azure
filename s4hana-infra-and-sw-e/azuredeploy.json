@@ -83,6 +83,13 @@
               "description": "Determines whether or not a new public ip should be provisioned."
             }
           },
+          "jumpboxPublicIpName": {
+            "type": "string",
+            "defaultValue": "PublicIp",
+            "metadata": {
+              "description": "Name of the public ip address"
+            }
+          },
         "servicePrincipalAppId": {
             "type": "string",
             "defaultValue": "",
@@ -123,6 +130,9 @@
             "AZURE_CLIENT_ID": "[variables('clientId')]",
             "AZURE_SECRET": "[variables('clientSecret')]",
             "AZURE_TENANT": "[variables('tenantId')]"
+        },
+        "publicIpAddressId": {
+            "id": "[resourceId(resourceGroup().name, 'Microsoft.Network/publicIPAddresses', parameters('jumpboxPublicIpName'))]"
         }
     },
     "resources": [
@@ -166,10 +176,7 @@
             "name": "publicipvm",
             "location": "[variables('location')]",
             "properties": {
-              "publicIPAllocationMethod": "Dynamic",
-              "dnsSettings": {
-                "domainNameLabel": "publicipvmdns"
-              }
+              "publicIPAllocationMethod": "Dynamic"
             }
         },
         {
@@ -178,7 +185,7 @@
             "name": "[variables('nicName')]",
             "location": "[variables('location')]",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses/', 'publicipvm')]"
+                "[parameters('jumpboxPublicIpName')]"
               ],
             "tags": {
                 "displayName": "NetworkInterface"
@@ -190,7 +197,7 @@
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'publicipvm')]"
+                                "id": "[if(not(equals(parameters('jumpboxPublicIpNewOrExisting'), 'none')), variables('publicIpAddressId') , json('null'))]"
                               },
                             "subnet": {
                                 "id": "[variables('subnetRef')]"
