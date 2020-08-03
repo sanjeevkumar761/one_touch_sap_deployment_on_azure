@@ -191,7 +191,7 @@
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIPAddress": {
-                                "id": "[if(not(equals(parameters('jumpboxPublicIpNewOrExisting'), 'none')), resourceId(resourceGroup().name, 'Microsoft.Network/publicIPAddresses', parameters('jumpboxPublicIpName')) , json('null'))]"
+                                "id": "[if(equals(parameters('jumpboxPublicIpNewOrExisting'), 'new'), resourceId(resourceGroup().name, 'Microsoft.Network/publicIPAddresses', parameters('jumpboxPublicIpName')) , json('null'))]"
                               },
                             "subnet": {
                                 "id": "[variables('subnetRef')]"
