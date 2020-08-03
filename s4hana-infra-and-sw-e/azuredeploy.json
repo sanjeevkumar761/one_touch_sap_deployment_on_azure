@@ -96,7 +96,6 @@
         "userenteredlocation": "[resourceGroup().location]",
         "vNetName": "[parameters('virtualNetworkName')]",
         "subNetName": "[parameters('subnetName')]",
-        "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
         "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subNetName'))]",        
         "nicName": "[concat(parameters('vmName'), '-nic')]",
         "diskName": "[concat(parameters('vmName'), '-disk')]",
@@ -141,19 +140,8 @@
                 ]
             }
         },
-        {
-            "type": "Microsoft.Storage/storageAccounts",
-            "name": "[variables('diagStorageAccountName')]",
-            "apiVersion": "2018-07-01",
-            "location": "[variables('location')]",
-            "sku": {
-                "name": "Standard_LRS"
-            },
-            "kind": "Storage",
-            "properties": {}
-        },
        
-                {
+        {
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
@@ -212,12 +200,6 @@
                             "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
                         }
                     ]
-                },
-                "diagnosticsProfile": {
-                    "bootDiagnostics": {
-                        "enabled": true,
-                        "storageUri": "[reference(variables('diagStorageAccountName')).primaryEndpoints.blob]"
-                    }
                 }
             }
         },
