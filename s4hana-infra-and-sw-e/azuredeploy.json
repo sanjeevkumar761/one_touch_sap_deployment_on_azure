@@ -6,74 +6,81 @@
             "type": "string",
             "defaultValue": "new",
             "allowedValues": [
-              "new",
-              "existing"
+                "new",
+                "existing"
             ],
             "metadata": {
-              "description": "Specify whether to create a new or existing virtual network for the VM."
+                "description": "Specify whether to create a new or existing virtual network for the VM."
             }
-          },
+        },
         "virtualNetworkName": {
             "type": "string",
             "defaultValue": "newVnet",
             "metadata": {
-              "description": "Name of the existing VNET"
+                "description": "Name of the existing VNET"
             }
-        },    
+        },
         "vNetAddressSpace": {
             "type": "string",
             "defaultValue": "10.0.0.0/16",
             "metadata": {
-              "description": "vNet Address Space"
+                "description": "vNet Address Space"
             }
-        },    
+        },
         "subnetName": {
             "type": "string",
             "defaultValue": "default",
             "metadata": {
-              "description": "Name of the subnet in the virtual network you want to use"
+                "description": "Name of the subnet in the virtual network you want to use"
             }
         },
         "subnetAddressSpace": {
             "type": "string",
             "defaultValue": "10.0.0.0/24",
             "metadata": {
-              "description": "subnet Address Space"
+                "description": "subnet Address Space"
             }
-        },    
+        },
         "hanadbIp": {
             "type": "string",
             "defaultValue": "10.0.0.6",
             "metadata": {
-              "description": "HANA DB IP"
+                "description": "HANA DB IP"
             }
-        },    
+        },
         "pasIp": {
             "type": "string",
             "defaultValue": "10.0.0.7",
             "metadata": {
-              "description": "PAS IP"
+                "description": "PAS IP"
             }
-        },    
+        },
         "createAzureBastion": {
             "type": "string",
             "defaultValue": "yes",
             "metadata": {
                 "description": "Should it create Azure Bastion?"
             }
-        },        
+        },
         "bastionAddressSpace": {
             "type": "string",
             "defaultValue": "10.0.1.0/27",
             "metadata": {
-              "description": "Bastion Address Space"
+                "description": "Bastion Address Space"
             }
-        },    
+        },
         "vmName": {
             "type": "string",
             "defaultValue": "jumpboxlinux",
             "metadata": {
                 "description": "Name of the VM"
+            }
+        },
+        "jumpboxPublicIpNewOrExisting": {
+            "type": "string",
+            "defaultValue": "new",
+            "metadata": {
+                "description": "Determines whether or not a new public ip should be provisioned."
             }
         },
         "servicePrincipalAppId": {
@@ -96,7 +103,8 @@
         "userenteredlocation": "[resourceGroup().location]",
         "vNetName": "[parameters('virtualNetworkName')]",
         "subNetName": "[parameters('subnetName')]",
-        "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subNetName'))]",        
+        "diagStorageAccountName": "[concat(uniquestring(resourceGroup().id), 'specvm')]",
+        "subnetRef": "[resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworkName'),  parameters('subNetName'))]",
         "nicName": "[concat(parameters('vmName'), '-nic')]",
         "diskName": "[concat(parameters('vmName'), '-disk')]",
         "subscriptionId": "[subscription().subscriptionId]",
@@ -108,8 +116,8 @@
         "subnetAddressSpace": "[parameters('subnetAddressSpace')]",
         "hanadbIp": "[parameters('hanadbIp')]",
         "pasIp": "[parameters('pasIp')]",
-        "bastionAddressSpace": "[parameters('bastionAddressSpace')]",    
-        "createAzureBastion": "[parameters('createAzureBastion')]",     
+        "bastionAddressSpace": "[parameters('bastionAddressSpace')]",
+        "createAzureBastion": "[parameters('createAzureBastion')]",
         "arguments": {
             "AZURE_SUBSCRIPTION_ID": "[variables('subscriptionId')]",
             "AZURE_CLIENT_ID": "[variables('clientId')]",
@@ -140,25 +148,51 @@
                 ]
             }
         },
-       
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[variables('diagStorageAccountName')]",
+            "apiVersion": "2018-07-01",
+            "location": "[variables('location')]",
+            "sku": {
+                "name": "Standard_LRS"
+            },
+            "kind": "Storage",
+            "properties": {}
+        },
+        {
+            "condition": "[equals(parameters('jumpboxPublicIpNewOrExisting'), 'new')]",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "apiVersion": "2018-11-01",
+            "name": "publicipvm",
+            "location": "[variables('location')]",
+            "properties": {
+                "publicIPAllocationMethod": "Dynamic",
+                "dnsSettings": {
+                    "domainNameLabel": "publicipvmdns"
+                }
+            }
+        },
         {
             "apiVersion": "2018-10-01",
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[variables('nicName')]",
             "location": "[variables('location')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses/', 'publicipvm')]"
+            ],
             "tags": {
                 "displayName": "NetworkInterface"
             },
-            "dependsOn": [
-                "[variables('subNetName')]"
-            ],
             "properties": {
                 "ipConfigurations": [
                     {
                         "name": "ipconfig1",
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
-                             "subnet": {
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', 'publicipvm')]"
+                            },
+                            "subnet": {
                                 "id": "[variables('subnetRef')]"
                             }
                         }
@@ -203,6 +237,12 @@
                             "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('nicName'))]"
                         }
                     ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "[reference(variables('diagStorageAccountName')).primaryEndpoints.blob]"
+                    }
                 }
             }
         },
