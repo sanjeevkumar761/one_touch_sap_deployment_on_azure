@@ -17,20 +17,6 @@ stages:
           scriptType: 'bash'
           scriptLocation: 'inlineScript'
           inlineScript: |
-            git clone https://github.com/sanjeevkumar761/one_touch_sap_deployment_on_azure.git
-            git checkout ado-native-and-testing
-            cd s4hana-infra-and-sw-e
-            ls
-            cp $(Build.Repository.LocalPath)/s4hana-infra-and-sw-e/scripts/hello.sh ./s4hana-infra-and-sw-e/scripts/
-            ls -ll
-            git add s4hana-infra-and-sw-e/scripts/hello.sh
-            git config user.email "sanjeevkumar761@gmail.com"
-            git config user.name "Sanjeev Kumar"
-
-            git commit -m "Updated script"
-            git push https://sanjeevkumar761:$(github_token)@github.com/sanjeevkumar761/one_touch_sap_deployment_on_azure.git
-            git status
-
             az group create -l northeurope -n $(resource_group)-test
             ls $(Build.Repository.LocalPath)
             az deployment group create --resource-group $(resource_group)-test --template-file $(Build.Repository.LocalPath)/s4hana-infra-and-sw-e/azuredeploy.json --parameters vNetNewOrExisting=new virtualNetworkName=sapvnet vNetAddressSpace="10.0.0.0/16" subnetName=default subnetAddressSpace="10.0.0.0/24" hanadbIp="10.0.0.6" pasIp="10.0.0.7" createAzureBastion="no" bastionAddressSpace="10.0.1.0/27" vmName=jumpboxlinux servicePrincipalAppId="5f7565e5-991d-4852-8913-8356d6125cd0" servicePrincipalPassword=$(service_principal_password)
