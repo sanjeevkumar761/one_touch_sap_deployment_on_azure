@@ -5,28 +5,34 @@ This creates infrastructure on Microsoft Azure and installs SAP HANA, ASCS and C
 It takes about 120-150 minutes for full deployment process to complete. Please follow the steps mentioned below:    
 
 ## Getting ready:  
-1. Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.    
+Create Service Principal using Azure Cloud Shell /AZ CLI with command "az ad sp create-for-rbac". Save details as you'll need those later.    
 If you use exitsing Service Principal, please make sure to copy appId and password/secret correctly.  
-2. Create a reource group (with all lowercase characters in name, no special characters), create a Vnet (with 10.0.0.0/16 address space, in same region as resource group, all lowercase characters in vNet name), then create two subnets - one for SAP workload (with address space 10.0.0.0/24) and second for Azure Bastion (if you need Azure Bastion, else select 'no'). The Azure Bastion subnet must be named "AzureBastionSubnet" and This subnet must be at least /27 or larger e.g., 10.0.1.0/27 . If you need public IP address for jumpboxlinux, then select 'yes' (as is the default value) for jumpboxlinux. 
 
 ## To deploy Souvenir Apps for SAP on Azure, Click the button below:  
 
-While deploying to Azure, make sure to select existing resource group, vNet and subNet (for SAP workload) which you would have created as mentioned in above section. 
+Click Deploy to Azure button to install Souvenir SAP on Azure App Station
 
 [![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsanjeevkumar761%2Fone_touch_sap_deployment_on_azure%2Fmaster%2Fsouvenir-sap-azure-apps%2Fazuredeploy.json)  
 
-Altrenatively, yon can initiate the deployment using Azure CLI. The command is:   
-az deployment group create --resource-group <resource group name> --template-uri <path to souvenir azuredploy.json which is  https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/azuredeploy.json >  --parameters vNetNewOrExisting=existing virtualNetworkName=<vnet name> subnetName=<subnet name> vmName=jumpboxlinux servicePrincipalAppId=<appId> servicePrincipalPassword=<password>
+## Do the following steps to proceed with S4HANA installation:  
+1) Check if jumpboxlinux deployment is complete on Azure  
+2) After above step, wait for 10 minutes for App Station installation to complete  
+3) Now in a web browser, open URL http://<public IP of your jumpboxlinux VM>:3000/token  
+4) Copy token by selecting all contents of above token  
+5) Now in a new web browser tab, open App Station URL http://<public IP of your jumpboxlinux VM>:8080/#/c/default/ns/sap-azure-apps/apps/one-touch-sap-deployment  
+6) Enter token contents in token input box and click Login button  
+7) Now you can see in app notes that one-touch-sap-deployment app runs on URL http://<public IP of your jumpboxlinux VM>:8081 . So, in a browser tab, open URL http://<public IP of your jumpboxlinux VM>:8081  
+8) Now enter the required details it asks for and submit for S/4HANA installation.  
 
 ## How to check installation progress:   
 1\) Wait for initial deployment to complete in Azure portal. You'll see the message "Your deployment is complete" in Azure portal. It deploys a jumpbox on Azure  
 2\) Go to your Resource Group in Azure portal, locate the VM named "jumpboxlinux" and look for its Public IP address  
 3\) *Wait for about 10 minutes* for installation monitoring layer inside jumpboxlinux VM to be ready \(It prepares automatically in background\)   
-4\) Now, you can check installation progress on URL http://\<public IP of your jumpboxlinux VM\>:3000  \(you need to refresh the page manually to check progress until the Deployment progress reaches 100% which takes about 40-50 minutes)  
-5\) You can check detailed installation logs on URL http://\<public IP of your jumpboxlinux VM\>:9001  
+4\) Now, you can check installation progress on URL http://\<public IP of your jumpboxlinux VM\>:8081/progress  \(you need to refresh the page manually to check progress until the Deployment progress reaches 100% which takes about 40-50 minutes)  
+5\) You can download detailed installation logs on URL e.g., http://\<public IP of your jumpboxlinux VM\>:8081/download?logtpye=terraformhana  
 
 ## Connect using SAP GUI:        
-1\) Logon to Windows jumpbox (installed automatically as part of the installation process)    
+1\) Install a Windows jumpbox and logon to Windows jumpbox    
 2\) Download file "sapgui-download-extract.ps1" from here https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw/scripts/sapgui-download-extract.ps1   (This step will take about 10-15 minutes)  
 3\) Open Powershell and cd into directory "C:\Users\juser"  
 4\) Run powershell script by typing on command line "sapgui-download-extract.ps1" and hit Enter  
