@@ -13,7 +13,7 @@ If you use exitsing Service Principal, please make sure to copy appId and passwo
 
 While deploying to Azure, make sure to select existing resource group, vNet and subNet (for SAP workload) which you would have created as mentioned in above section. 
 
-[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fdev.azure.com%2Fsanjeku%2Fsouvenir%2F_apis%2FsourceProviders%2F_git%2Ffilecontents%3Frepository%3Dsouvenir-sap-azure-apps%26commitOrBranch%3Dmaster%26api-version%3D5.0-preview.1%26path%3D%252Fazure-deploy-init%252Fazuredeploy.json)  
+[![Deploy to Azure](https://aka.ms/deploytoazurebutton)](https://ms.portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsanjeevkumar761%2Fone_touch_sap_deployment_on_azure%2Fmaster%2Fsouvenir-sap-azure-apps%2Fazuredeploy.json)  
 
 Altrenatively, yon can initiate the deployment using Azure CLI. The command is:   
 az deployment group create --resource-group <resource group name> --template-uri <path to souvenir azuredploy.json which is  https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/s4hana-infra-and-sw-e/azuredeploy.json >  --parameters vNetNewOrExisting=existing virtualNetworkName=<vnet name> subnetName=<subnet name> vmName=jumpboxlinux servicePrincipalAppId=<appId> servicePrincipalPassword=<password>
