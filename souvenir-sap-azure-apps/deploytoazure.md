@@ -21,7 +21,7 @@ Click Deploy to Azure button to install Souvenir SAP on Azure App Station
 4) Copy token by selecting all contents of above token  
 5) Now in a new web browser tab, open App Station URL http://\<public IP of your jumpboxlinux VM>:8080/#/c/default/ns/sap-azure-apps/apps/one-touch-sap-deployment    
 6) Enter token contents in token input box and click Login button  
-7) Now you can see in app notes that one-touch-sap-deployment app runs on URL http://\<public IP of your jumpboxlinux VM>:8081 . So, in a browser tab, open URL http://<public IP of your jumpboxlinux VM>:8081    
+7) Now you can see in app notes that one-touch-sap-deployment app runs on URL http://\<public IP of your jumpboxlinux VM>:8081 . So, in a browser tab, open URL http://\<public IP of your jumpboxlinux VM>:8081    
 8) Now enter the required details it asks for and submit for S/4HANA installation.  
 
 ## How to check installation progress:   
