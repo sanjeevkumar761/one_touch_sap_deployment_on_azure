@@ -38,12 +38,16 @@ sudo curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 sudo kubectl create namespace kubeapps
 sudo su
 
-az acr login --name souveniracr --username $2 --password $3 
+export azureacr_user=publictoken
+export azureacr_token=2Lq4uQU9797zdf1Ym=ugoKfwGvhd0AWJ
+
+# az acr login --name souveniracr --username $2 --password $3 
+az acr login --name souveniracr --username $azureacr_user --password $azureacr_token
 docker pull souveniracr.azurecr.io/kubeapps/dashboard
 
 export HELM_EXPERIMENTAL_OCI=1
-echo $3 | helm registry login souveniracr.azurecr.io \
-  --username $2 \
+echo $azureacr_token | helm registry login souveniracr.azurecr.io \
+  --username $azureacr_user \
   --password-stdin
 
 helm chart pull souveniracr.azurecr.io/helm/kubeapps:v1
@@ -55,11 +59,11 @@ helm dependency update kubeapps
 sudo helm install kubeapps --namespace kubeapps ./kubeapps --set useHelm3=true
 
 sudo kubectl create namespace sap-azure-apps
-az acr login --name souveniracr --username $2 --password $3 
+az acr login --name souveniracr --username $azureacr_user --password $azureacr_token 
 docker pull souveniracr.azurecr.io/souvenir/onetouchsapdeployment:latest
 export HELM_EXPERIMENTAL_OCI=1
-echo $3 | helm registry login souveniracr.azurecr.io \
-  --username $2 \
+echo $azureacr_token | helm registry login souveniracr.azurecr.io \
+  --username $azureacr_user \
   --password-stdin
 helm chart pull souveniracr.azurecr.io/helm/one-touch-sap-deployment:v1
 helm chart export souveniracr.azurecr.io/helm/one-touch-sap-deployment:v1 \
