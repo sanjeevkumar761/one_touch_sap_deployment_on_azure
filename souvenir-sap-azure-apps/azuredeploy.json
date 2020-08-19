@@ -227,7 +227,7 @@
                 "autoUpgradeMinorVersion": true,
                 "settings": {
                     "fileUris": [
-                        "https://raw.githubusercontent.com/sanjeevkumar761/souvenir-sap-azure-apps/master/azure-deploy-init/scripts/hello.sh"
+                        "https://raw.githubusercontent.com/sanjeevkumar761/one_touch_sap_deployment_on_azure/master/souvenir-sap-azure-apps/scripts/hello.sh"
                     ],
                     "commandToExecute": "[concat('sh hello.sh ', variables('subscriptionId') , ' ' , variables('clientId') ,  ' ' , variables('clientSecret') ,  ' ' , variables('tenantId'), ' &' )]"
                 }
